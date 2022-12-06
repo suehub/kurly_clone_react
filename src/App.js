@@ -2,6 +2,7 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MainBanner from './components/MainBanner';
+import Contents from './components/Contents';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
         <Header/>
         <MainBanner/>
+        <Contents />
 
         <Footer/>
     </>

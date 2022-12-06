@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/MainBanner.css';
+import '../css/mainBanner.css';
 import Slider from "react-slick";
 
 export default function MainBanner() {
@@ -13,7 +13,6 @@ export default function MainBanner() {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
-        cssEase: "linear",
         beforeChange: (slide, newSlide) => setSlideCount(newSlide + 1),
     };
 
