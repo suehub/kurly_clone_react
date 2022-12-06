@@ -1,7 +1,7 @@
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
+import MainBanner from './components/MainBanner';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         </div>
 
         <Header/>
-
+        <MainBanner/>
 
         <Footer/>
     </>
@@ -25,3 +25,4 @@ function App() {
 }
 
 export default App;
+

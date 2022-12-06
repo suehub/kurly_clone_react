@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import '../global';
 
 export default function Header() {
+    const [search, setSearch] = useState("");
     
   return (
-    <>
         <div className="HeaderWrapper">
             <div className="Header">
                 <div className="Header1"> 
@@ -29,7 +29,10 @@ export default function Header() {
                     </div>
                     <div className="Header2Inner2">
                         <div>
-                            <input placeholder="검색어를 입력해주세요"/>
+                            <input 
+                                value={search}
+                                onChange={e => setSearch(e.target.value)} 
+                                placeholder="검색어를 입력해주세요"/>
                             <button></button>
                         </div>   
                     </div>
@@ -79,7 +82,6 @@ export default function Header() {
             </div>
             
         </div>
-    </>
   )
 }
 
