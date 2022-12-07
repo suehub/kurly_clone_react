@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import '../css/contents.css';
 
 
 export default function Contents() {
+    const [slideCount, setSlideCount] = useState(1);
 
     const settings = {
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        beforeChange: (slide, newSlide) => setSlideCount(newSlide + 1),
+    };
+
+    const settings2 = {
         dots: false,
         infinite: true,
         speed: 300,
@@ -15,7 +27,7 @@ export default function Contents() {
         arrows: true,
     };
 
-    const settings2 = {
+    const settings3 = {
         dots: false,
         infinite: true,
         speed: 300,
@@ -26,60 +38,44 @@ export default function Contents() {
 
   return (
    <>
-   <div>
-    {/* side nav */}
-    <nav class="sideNav">
-        <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/delivery_search/delivery_search">
-            <img class="sideNavMainImg" src="https://res.kurly.com/_next/static/images/deliveryInfo_20221122-9988ad6f6927b33d079e3f89e9d8826f.png" alt=""/>
-        </a>
-        <ul class="sideNavUl">
-            <li>
-                <a href="/shop/main/html.php?htmid=event/kurly.htm&amp;name=lovers">
-                    등급별 혜택
-                </a>
-            </li>
-            <li>
-                <a href="/shop/board/list.php?id=recipe">
-                    레시피
-                </a>
-            </li>
-        </ul>
-        <div class="recentView">
-            <button disabled class="recentViewButtonTop"></button>
-            <strong>최근 본 상품</strong>
-            <div class="recentLists">
-                <ul>
-                    <li>
-                        <a href="/goods/5115219">
-                            <img src="https://img-cf.kurly.com/cdn-cgi/image/width=60,format=auto/shop/data/goods/1650430833824l0.jpg" alt="5115219"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/goods/5069882">
-                            <img src="https://img-cf.kurly.com/cdn-cgi/image/width=60,format=auto/shop/data/goods/1653036301411l0.jpeg" alt="5069882"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/goods/1000078041">
-                            <img src="https://product-image.kurly.com/cdn-cgi/image/width=60,format=auto/product/image/bd77f676-4172-4863-828e-2946cbfd017a.jpg" alt="1000078041"/>
-                        </a>
-                    </li>
-                     {/* <li>
-                        <a href="/goods/5151990">
-                            <img src="https://img-cf.kurly.com/cdn-cgi/image/width=60,format=auto/shop/data/goods/1656574470722l0.jpg" alt="5151990"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/goods/5103330">
-                            <img src="https://img-cf.kurly.com/cdn-cgi/image/width=60,format=auto/shop/data/goods/1640069478503l0.jpg" alt="5103330"/>
-                        </a>
-                    </li>  */}
-                </ul>
+    {/* main banner */}
+    <div className="mainBanner">
+        <div className='bannerDiv'>
+            <Slider className='SliderDiv' {...settings}>
+                <div className="slider">
+                    <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/card_benefit/card_benefit">
+                        <img className="mainBannerImg" src="https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/f69e8e21-2119-429f-8721-72ecf4003120.jpg" />
+                    </a>
+                </div>
+                <div className="slider">
+                    <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/2022/1117/kurlystmas/kurlystma">
+                        <img className="mainBannerImg" src="https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/dbc42cdb-63ed-4655-899b-c4c5fe5fb5a8.jpg" />
+                    </a>
+                </div>
+                <div className="slider">
+                    <a href="https://www.kurly.com/main/beauty">
+                        <img className="mainBannerImg" src="https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/50eecac0-cf8a-4018-b97b-f6ef97907181.jpg" />
+                    </a>
+                </div>
+                <div className="slider">
+                    <a href="https://www.kurly.com/categories/796">
+                        <img className="mainBannerImg" src="https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/80838f4b-0b88-4f08-9f76-64710ff9cfa5.jpg" />
+                    </a>
+                </div>
+                <div className="slider">
+                    <a href="https://www.kurly.com/categories/303">
+                        <img className="mainBannerImg" src="https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/4f52800e-df9a-4919-ba85-8e9742e1aea1.jpg" />
+                    </a>
+                </div>
+
+            </Slider>
+            
+            <div className="bannerCountWrapper">
+                <div className="bannerCount"> {slideCount} / 5</div>
             </div>
-            <button class="recentViewButtonBottom"></button>
         </div>
-    </nav>
-   
+    </div>
+
     {/* recommand product */}
     <div className="recommandProduct">
         <div>
@@ -90,7 +86,7 @@ export default function Contents() {
             </div>
             <div className="recommandLists">
                 <div className="SliderWrapper">
-                    <Slider {...settings}>
+                    <Slider {...settings2}>
                         <ListMargin>
                             <div className="swiperList">
                                 <div className="swiperListImg">
@@ -440,7 +436,7 @@ export default function Contents() {
                 <p>더 많은 고객 후기가 궁금하다면?</p>
             </div>
             <div className="instagramReviewImgs">
-                <Slider {...settings2}>
+                <Slider {...settings3}>
                     <div>
                         <a className="instagramImgWrapper" href="https://www.instagram.com/p/ClfPKjUplXD/">
                             <img src="https://scontent-nrt1-1.cdninstagram.com/v/t51.29350-15/318021261_659466468997698_781495453913760502_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=rcpKA3w4F_EAX-Q6-ZM&_nc_ht=scontent-nrt1-1.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfCnq-XIwjHxGP4iuYclKOKE7JZ6erP_EqoWO82BthE9Jg&oe=6393C9F1" alt="인스타그램 리뷰 사진"/>
@@ -515,8 +511,6 @@ export default function Contents() {
             </div>
         
     </div>
-
-   </div>
    </>
   )
 }

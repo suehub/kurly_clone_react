@@ -1,8 +1,9 @@
 import './App.css';
+import styled from 'styled-components';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import MainBanner from './components/MainBanner';
 import Contents from './components/Contents';
+import SideNav from './components/SideNav';
 
 function App() {
   return (
@@ -18,9 +19,14 @@ function App() {
         </div>
 
         <Header/>
-        <MainBanner/>
-        <Contents />
 
+        <MainContent>
+          <div>
+            <Contents />
+          </div>
+          <SideNav/>
+        </MainContent>
+        
         <Footer/>
     </>
   );
@@ -28,3 +34,7 @@ function App() {
 
 export default App;
 
+const MainContent = styled.div`
+  position: relative; 
+  margin-bottom: 40px;
+`;
