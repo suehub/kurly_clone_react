@@ -6,8 +6,8 @@ import '../global';
 export default function Header() {
     const [search, setSearch] = useState(""); // 검색 input state
 
-    const [navActive, setNavActive] = useState(false); 
-    const [scrollY, setScrollY] = useState(0);  // scroll 값 state
+    const [navActive, setNavActive] = useState(false);
+    const [scrollY, setScrollY] = useState(0);
     const [scrollActive, setScrollActive] = useState(false);
 
     const scrollFixed = () => {
@@ -81,7 +81,7 @@ export default function Header() {
                 </div>
             </div>
 
-            <div className={"navWrapper + (scrollActive ? 'fixed' : '')"}>
+            <div className={scrollActive ? "navWrapper fixed" : "navWrapper"}>
                 <div className="nav">
                     <CategoryHover>
                         <div className="navCategory">
@@ -105,7 +105,54 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-            
+
+            {/* <div className="navWrapperScroll" hidden>
+                <div className="navScroll">
+                    <CategoryHover>
+                        <div className="navCategoryScroll">
+                            <div>
+                                <span className="navCategoryIcon"></span>
+                                <span className="navCategoryText">카테고리</span>
+                            </div>
+                        </div>
+                    </CategoryHover>
+
+                    <ListHover>
+                        <ul className="navUlScroll">
+                            <li><span>신상품</span></li>
+                            <li><span>베스트</span></li>
+                            <li><span>알뜰쇼핑</span></li>
+                            <li><span>특가/혜택</span></li>
+                        </ul>
+                    </ListHover>
+                    <div className="HeaderScrollInput">
+                        <div>
+                            <input 
+                                value={search}
+                                onChange={e => setSearch(e.target.value)} 
+                                placeholder="검색어를 입력해주세요"/>
+                            <button></button>
+                        </div>
+                    </div>
+                    <div className="HeaderIcon">
+                        <div>
+                            <LocationIconHover>
+                                <div className="HeaderLocationIcon"></div>
+                            </LocationIconHover>
+                            <WishIconHover>
+                                <button className="HeaderWishIcon"></button>
+                            </WishIconHover>
+                            <div className="HeaderCartIcon">
+                                <div>
+                                    <CartIconHover>
+                                        <button></button>
+                                    </CartIconHover>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> */}
         </div>
   )
 }

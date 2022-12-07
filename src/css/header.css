@@ -170,12 +170,7 @@
     background-color: rgb(255, 255, 255);
     width: 100%;
     box-shadow: rgb(0 0 0 / 7%) 0px 3px 4px 0px;
-    z-index: 20;
-}
-.fix{
-    position: fixed;
-    top: 0px;
-    animation: down 0.5s ease;
+    z-index: 1000;
 }
 .nav{
     width: 1050px;
@@ -201,7 +196,7 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 20px;
-    letter-spacing: -0.3px;
+    white-space: nowrap;
     color: rgb(51, 51, 51);
 }
 .navUl{
@@ -209,10 +204,10 @@
     margin-left: 30px;
 }
 .navUl > li{
-    width: 150px;
-    height: 55px;
     display: flex;
     justify-content: center;
+    width: 150px;
+    height: 55px;
     padding-top: 18px;
     line-height: 20px;
     text-align: center;
@@ -243,4 +238,118 @@
 .navCircle > a > span{
     font-weight: 500;
     color: rgb(95, 0, 128);
+}
+
+.navWrapperScroll{
+    width: 1050px;
+    height: 56px;
+    margin: 0px auto;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+.navScroll{
+    width: 1050px;
+    height: 56px;
+    margin: 0px auto;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+.navCategoryScroll{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+    flex: 0 0 12px;
+
+}
+.navCategoryScroll > div{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.navUlScroll{
+    display: flex;
+    flex: 0 0 0%;
+    margin-left: 30px;
+}
+.navUlScroll > li {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    height: 55px;
+    padding-top: 18px;
+    line-height: 20px;
+    text-align: center;
+    flex: 0 0 120px;
+}
+.navUlScroll > li > span{
+    height: fit-content;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+    cursor: pointer;
+}
+.HeaderScrollInput{
+    position: relative;
+    width: 1050px;
+    margin: 0px auto;
+}
+.HeaderScrollInput > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 14px;
+    border-radius: 6px;
+    box-shadow: rgb(247 247 247) 0px 0px 0px 1px inset;
+    position: fixed;
+    z-index: 102;
+    top: 10px;
+    width: 242px;
+    height: 36px;
+    border: none;
+    background-color: rgb(247, 247, 247);
+    left: 50%;
+    margin-left: 120px;
+}
+.HeaderScrollInput > div > input{
+    width: 193px;
+    padding-right: 22px;
+    font-weight: 400;
+    font-size: 12px;
+    color: rgb(51, 51, 51);
+    line-height: 18px;
+    background-color: inherit;
+    border: none;
+    outline: none;
+}
+.HeaderScrollInput > div > button{
+    position: relative;
+    height: 30px;
+    margin: 10px -5px 10px 10px;
+    top: 0px;
+    width: 40px;
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTI0IDI0SDZWNmgxOHoiLz4KICAgICAgICA8cGF0aCBkPSJNMjIuNSAyMi41aC0xNXYtMTVoMTV6Ii8+CiAgICAgICAgPGcgc3Ryb2tlPSIjMzMzIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNiI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0xOC44MjUgMTMuMzUyYzAgMS43MjUtLjc1IDMuMjI1LTEuOTUgNC4yLS45NzUuODI1LTIuMTc1IDEuMjc1LTMuNTI1IDEuMjc1YTUuNDU3IDUuNDU3IDAgMCAxLTUuNDc1LTUuNDc1IDUuNDU3IDUuNDU3IDAgMCAxIDUuNDc1LTUuNDc1YzMtLjA3NSA1LjQ3NSAyLjQgNS40NzUgNS40NzV6TTIxLjM3NSAyMS4zNzVsLTMuNzUtMy43NSIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==) 0px 0px no-repeat;
+}
+.HeaderIcon{
+    position: relative;
+    width: 1050px;
+    margin: 0px auto;
+}
+.HeaderIcon > div{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    z-index: 102;
+    right: auto;
+    top: 10px;
+    left: 50%;
+    margin-left: 383px;
+}
+.fixed{
+    position: fixed;
+    top: 0px;
+    animation: down 0.5s ease;
 }

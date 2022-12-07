@@ -105,7 +105,12 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: all 0.5s ease-in-out 0s; /* 부드럽게 확대 위함 */
 }
+.swiperListImg > img:hover{
+    transform: scale(1.02);
+}
+
 /* 장바구니 버튼 */
 .cartButton > button{
     right: 16px;
@@ -222,6 +227,10 @@
     height: 100%;
     object-fit: cover;
     background-color: rgb(238, 238, 238);
+    transition: all 0.5s ease-in-out 0s;
+}
+.randomCollectionLeft > img:hover{
+    transform: scale(1.02);
 }
 .randomCollectionRight{
     letter-spacing: -0.2px;
@@ -268,6 +277,9 @@
     object-fit: cover;
     transition: all 0.5s ease-in-out 0s;
     background-color: rgb(238, 238, 238);
+}
+.randomCollectionListImg:hover{
+    transform: scale(1.02);
 }
 .randomCollectionProduct{
     flex: 0 0 311px;
