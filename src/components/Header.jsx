@@ -4,8 +4,32 @@ import styled from 'styled-components';
 import '../global';
 
 export default function Header() {
-    const [search, setSearch] = useState("");
-    
+    const [search, setSearch] = useState(""); // 검색 input state
+
+    const [navActive, setNavActive] = useState(false); 
+    const [scrollY, setScrollY] = useState(0);  // scroll 값 state
+    const [scrollActive, setScrollActive] = useState(false);
+
+    const scrollFixed = () => {
+        if (scrollY > 100) {
+        setScrollY(window.pageYOffset);
+        setScrollActive(true);
+        } else {
+        setScrollY(window.pageYOffset);
+        setScrollActive(false);
+        }
+    };
+
+    useEffect(() => {
+        const scrollListener = () => {
+        window.addEventListener('scroll', scrollFixed);
+        };
+        scrollListener();
+        return () => {
+        window.removeEventListener('scroll', scrollFixed);
+        };
+    });
+
   return (
         // header
         <div className="HeaderWrapper">
@@ -57,7 +81,7 @@ export default function Header() {
                 </div>
             </div>
 
-            <div className="navWrapper">
+            <div className={"navWrapper + (scrollActive ? 'fixed' : '')"}>
                 <div className="nav">
                     <CategoryHover>
                         <div className="navCategory">
@@ -125,3 +149,4 @@ const ListHover = styled.div`
         text-underline-position : under;
     }
 `;
+
