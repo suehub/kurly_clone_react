@@ -7,6 +7,7 @@ export default function Header() {
     const [search, setSearch] = useState("");
     
   return (
+        // header
         <div className="HeaderWrapper">
             <div className="Header">
                 <div className="Header1"> 
