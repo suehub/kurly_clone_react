@@ -11,7 +11,7 @@ export default function Header() {
     const [scrollActive, setScrollActive] = useState(false);
 
     const scrollFixed = () => {
-        if (scrollY > 100) {
+        if (scrollY > 156) {    // header height
         setScrollY(window.pageYOffset);
         setScrollActive(true);
         } else {
@@ -81,7 +81,7 @@ export default function Header() {
                 </div>
             </div>
 
-            <div className={scrollActive ? "navWrapper fixed" : "navWrapper"}>
+            <div className="navWrapper">
                 <div className="nav">
                     <CategoryHover>
                         <div className="navCategory">
@@ -106,7 +106,7 @@ export default function Header() {
                 </div>
             </div>
 
-            {/* <div className="navWrapperScroll" hidden>
+            <div className={scrollActive ? "navWrapperScroll fixed" : "navWrapperScroll none"}>
                 <div className="navScroll">
                     <CategoryHover>
                         <div className="navCategoryScroll">
@@ -152,7 +152,7 @@ export default function Header() {
                         </div>
                     </div>
                 </div>
-            </div> */}
+            </div>
         </div>
   )
 }
