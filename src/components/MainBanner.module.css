@@ -1,0 +1,54 @@
+/* 메인 배너 */
+.mainBanner{
+    height: 100%;
+}
+.bannerDiv{
+    position: relative;
+    height: fit-content;
+    max-width: 1900px;
+    margin: 0px auto 40px;
+}
+.SliderDiv{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+}
+.slider{
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+}
+.mainBannerImg{
+    width: 100%;
+    min-width: 1050px;
+    height: 370px;
+    object-fit: cover;
+    cursor: pointer;
+}
+.bannerCountWrapper{
+    position: relative;
+    width: 1050px;
+    margin: 0px auto;
+    z-index: 20;
+}
+.bannerCount{
+    position: absolute;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 23px;
+    right: 109px;
+    bottom: 20px;
+    line-height: 23px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 12px;
+}

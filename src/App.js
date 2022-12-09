@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Contents from './components/Contents';
 import SideNav from './components/SideNav';
+import MainBanner from './components/MainBanner';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
 
         <MainContent>
           <div>
+            <MainBanner />
             <Contents />
           </div>
           <SideNav/>

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import '../css/header.css';
+import './header.css';
 import styled from 'styled-components';
 import '../global';
 
 export default function Header() {
     const [search, setSearch] = useState(""); // 검색 input state
 
-    const [navActive, setNavActive] = useState(false);
     const [scrollY, setScrollY] = useState(0);
     const [scrollActive, setScrollActive] = useState(false);
 
