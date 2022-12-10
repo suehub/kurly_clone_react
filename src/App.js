@@ -1,5 +1,6 @@
 import './App.css';
 import styled from 'styled-components';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Contents from './components/Contents';
@@ -7,7 +8,7 @@ import SideNav from './components/SideNav';
 import MainBanner from './components/MainBanner';
 import NotFound from './pages/NotFound';
 import Product from './pages/Product';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NewProduct from './pages/NewProduct';
 
 function App() {
   return (
@@ -38,6 +39,12 @@ function App() {
                       <Product />
                   </MainContent> 
                 }></Route>
+                <Route path='/newproduct' element={
+                  <MainContent>                    
+                    <NewProduct />
+                    <SideNav/>
+                  </MainContent>
+                }></Route>
                 <Route path='*' element={<NotFound />}></Route>
                  
               </Routes>
@@ -52,5 +59,5 @@ export default App;
 
 const MainContent = styled.div`
   position: relative; 
-  margin-bottom: 40px;
+  margin: 0 auto 40px auto;
 `;
