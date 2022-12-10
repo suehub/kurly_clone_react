@@ -5,31 +5,45 @@ import Footer from './components/Footer';
 import Contents from './components/Contents';
 import SideNav from './components/SideNav';
 import MainBanner from './components/MainBanner';
+import NotFound from './pages/NotFound';
+import Product from './pages/Product';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <>
-       {/* 상단 배너 */}
-        <div className='TopBanner'>
-            <div>
-                <a href="">
-                    <div>지금 가입하고 인기상품 <b>100원</b>에 받아가세요!</div>
-                </a>
-                <button type="button"></button>
-            </div>
-        </div>
-
-        <Header/>
-
-        <MainContent>
-          <div>
-            <MainBanner />
-            <Contents />
+        <BrowserRouter>
+          <div className='TopBanner'>
+              <div>
+                  <a href="">
+                      <div>지금 가입하고 인기상품 <b>100원</b>에 받아가세요!</div>
+                  </a>
+                  <button type="button"></button>
+              </div>
           </div>
-          <SideNav/>
-        </MainContent>
+          <Header/>
+              <Routes>
+                <Route path='/' element={ // 메인 페이지
+                  <MainContent>
+                      <div>
+                          <MainBanner />
+                          <Contents />
+                      </div>
+                      <SideNav/>
+                  </MainContent> 
+                }/>
+                <Route path='/product' element={  // 상품 상세 페이지
+                  <MainContent>
+                      <SideNav/>
+                      <Product />
+                  </MainContent> 
+                }></Route>
+                <Route path='*' element={<NotFound />}></Route>
+                 
+              </Routes>
+            <Footer/>
+        </BrowserRouter>
         
-        <Footer/>
     </>
   );
 }

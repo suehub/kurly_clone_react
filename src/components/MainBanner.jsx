@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import datas from "../db/data.json";
 import styles from './MainBanner.module.css';
 
 export default function MainBanner() {
   const [slideCount, setSlideCount] = useState(1);
-
+  
   const settings = {
       dots: false,
       infinite: true,
@@ -16,6 +16,7 @@ export default function MainBanner() {
       autoplaySpeed: 3000,
       beforeChange: (slide, newSlide) => setSlideCount(newSlide + 1),
   };
+
     
   return (
     <div>
