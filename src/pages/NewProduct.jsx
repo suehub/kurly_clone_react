@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import filterCategory from '../db/data.json';
+import products from '../db/data.json'
+import './newProduct.css';
+import '../components/contents.css';
 
 export default function NewProduct() {
   return (
@@ -163,8 +166,70 @@ export default function NewProduct() {
             </FliterNav>
 
             <div style={{"width": "100%"}}>
-                <div></div>
-                <div></div>
+                <div className='productSort'>
+                    <div style={{"font-size": "14px", "font-weight": "500", "color": "rgb(51, 51, 51)"}}>총 380건</div>
+                    <ul style={{"position": "relative", "display": "flex", "align-items": "center"}}>
+                        <li className='sortTypeInfo'>
+                            <a href="/collections/market-newproduct?page=1&amp;per_page=96&amp;sorted_type=4">추천순</a>
+                            <div style={{"height": "20px", "margin-left": "5px"}}>
+                                <svg style={{"overflow": "hidden"}} width="14" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.9932 0.700195C8.73506 0.700195 10.3116 1.40557 11.4528 2.54565C12.5943 3.68594 13.3002 5.26111 13.3002 7.0002C13.3002 8.73928 12.5943 10.3145 11.4528 11.4547C10.3116 12.5948 8.73506 13.3002 6.9932 13.3002C5.25512 13.3002 3.68233 12.595 2.54387 11.4554C1.40457 10.315 0.700195 8.73952 0.700195 7.0002C0.700195 5.26087 1.40457 3.68541 2.54387 2.54497C3.68233 1.40537 5.25512 0.700195 6.9932 0.700195Z" stroke="#ccc" stroke-width="1.4"></path>
+                                    <path d="M4.5 5.21081H5.77027C5.81351 4.55135 6.26216 4.12973 6.95946 4.12973C7.64054 4.12973 8.09459 4.53514 8.09459 5.0973C8.09459 5.58784 7.90383 5.86944 7.35576 6.22524L7.1973 6.32432C6.45135 6.76216 6.13784 7.24865 6.18649 8.05946L6.19189 8.42703H7.44595V8.11892C7.44595 7.58378 7.64595 7.30811 8.35405 6.89189C9.08919 6.45405 9.5 5.87568 9.5 5.04865C9.5 3.85405 8.51081 3 7.02973 3C5.42432 3 4.54324 3.92973 4.5 5.21081ZM6.87838 11.0054C6.33784 11.0054 5.98108 10.6649 5.98108 10.1459C5.98108 9.62162 6.33784 9.28108 6.87838 9.28108C7.42973 9.28108 7.77568 9.62162 7.77568 10.1459C7.77568 10.6649 7.42973 11.0054 6.87838 11.0054Z" fill="#ccc"></path>
+                                </svg>
+                            </div>
+                        </li>
+                        <li className='sortType'>
+                            <a style={{"color": "rgb(51,51,51)", "font-weight" : "500", "cursor": "default"}} href="/collections/market-newproduct?page=1&amp;per_page=96&amp;sorted_type=0">신상품순</a>
+                        </li>
+                        <li className='sortType'>
+                            <a href="/collections/market-newproduct?page=1&amp;per_page=96&amp;sorted_type=1">판매량순</a>
+                        </li>
+                        <li className='sortType'>
+                            <a href="/collections/market-newproduct?page=1&amp;per_page=96&amp;sorted_type=5">혜택순</a>
+                        </li>
+                        <li className='sortType'>
+                            <a href="/collections/market-newproduct?page=1&amp;per_page=96&amp;sorted_type=2">낮은 가격순</a>
+                        </li>
+                        <li className='sortType'>
+                            <a href="/collections/market-newproduct?page=1&amp;per_page=96&amp;sorted_type=3">높은 가격순</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div className='productGrid'>
+                    {products.Products.map((product) => (
+                        <a key={product.id} href="">
+                            <div>
+                                <div className='productImgWrapper'>
+                                    <img src={product.url} alt="상품 이미지" loading="lazy"/>
+                                </div>
+                                <div className="cartButton">
+                                    <button type="button">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHZpZXdCb3g9IjAgMCA0NSA0NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMkEwMDM4IiBvcGFjaXR5PSIuNSIgY3g9IjIyLjUiIGN5PSIyMi41IiByPSIyMi41Ii8+CiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEuMDMgMTQuMzgpIiBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0ibTIwLjQ2IDIuOTEtMi4xNyA5LjIzSDUuODdMMy43MSAyLjkxeiIvPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS13aWR0aD0iMS4yIiBjeD0iMTYuMzUiIGN5PSIxNi44NiIgcj0iMS43Ii8+CiAgICAgICAgICAgIDxjaXJjbGUgc3Ryb2tlLXdpZHRoPSIxLjIiIGN4PSI3LjgyIiBjeT0iMTYuODYiIHI9IjEuNyIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0iTTAgMGgzLjAybDEuNDEgNS45OCIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="장바구니 아이콘"/>
+                                    </button>
+                                </div>
+                            </div>
+                            <div style={{"padding": "14px 10px 0px 0px"}}>
+                                <span style={{"display": "block", "padding-bottom": "2px"}}>
+                                    <span style={{"font-size":"14px", "color":"rgb(153,153,153", "line-height":"19px","letter-spacing":"-0.5px"}}>샛별배송</span>
+                                </span>
+                                <span className='productName'>{product.name}</span>
+                                <div style={{"display":"flex","flex-direction":"column"}}>
+                                    <div className='discountPercent'></div>
+                                    <span style={{"font-weight": "800","font-size":"16px","line-height":"24px","white-space":"nowrap"}}>
+                                        {product.price} <span className='won'> &nbsp;원</span>
+                                    </span>
+                                </div>
+                                <p className='productP'>알차게 꾸려 담은 와인 안주</p>
+                                <div className='extraInfo'>
+                                    <span>Kurly Only</span>
+                                </div>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+
+
                 <div></div>
             </div>
 

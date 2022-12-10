@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import './header.css';
 import styled from 'styled-components';
 import '../global';
@@ -91,7 +92,7 @@ export default function Header() {
 
                     <ListHover>
                         <ul className="navUl">
-                            <li><span>신상품</span></li>
+                            <li><span><Link to="/newProduct">신상품</Link></span></li>
                             <li><span>베스트</span></li>
                             <li><span>알뜰쇼핑</span></li>
                             <li><span>특가/혜택</span></li>
@@ -118,7 +119,7 @@ export default function Header() {
 
                     <ListHover>
                         <ul className="navUlScroll">
-                            <li><span>신상품</span></li>
+                            <li><span><Link to="/newProduct">신상품</Link></span></li>
                             <li><span>베스트</span></li>
                             <li><span>알뜰쇼핑</span></li>
                             <li><span>특가/혜택</span></li>
