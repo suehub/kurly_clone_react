@@ -66,6 +66,9 @@
     letter-spacing: normal;
     cursor: pointer;
 }
+.Header2Inner1Button1 a:active{  
+    color: rgb(95, 0, 128);
+}
 .Header2Inner1Button2{
     position: relative;
     margin-left: 22px;

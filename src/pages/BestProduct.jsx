@@ -5,16 +5,11 @@ import products from '../db/data.json'
 import './newProduct.css';
 import '../components/contents.css';
 
-export default function NewProduct() {
+export default function bestProduct() {
   return (
     <Container>
-        <div style={{"text-align": "center"}}>
-            <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/2022/0207/new_products">
-                <img style={{"width": "100%", "vertical-align": "top", "cursor": "pointer"}} 
-                    src="https://collection-image.kurly.com/product-collections/2451/QwAyaGZHzmHErgidNg01maHWb2l07ie67fE0Pa9d.jpg" alt="배너 이미지"/>               
-            </a>
-        </div>
-        <Title>신상품</Title>
+        
+        <Title>베스트</Title>
 
         <ProductDiv>
             <FliterNav>
@@ -238,7 +233,6 @@ export default function NewProduct() {
     </Container>
   )
 }
-
 
 const Container = styled.div`
     width: 1050px;

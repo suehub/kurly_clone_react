@@ -7,6 +7,7 @@ export default function Product() {
   
 
   return (
+    <>
     <Main>
        {/* <!-- 상품 정보 --> */}
         <main class="productDetail">
@@ -291,6 +292,16 @@ export default function Product() {
           <div class="inquiry"></div>
       </div>
     </Main>
+    {/* // <!-- 하단 상품 선택 --> */}
+    <div class="productSelect">
+        <div>
+            <button>
+                <span>상품 선택</span>
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iZHc0M3gxZTN5YSIgZD0iTTguOCA2LjRIMTZ2Ny4yIi8+CiAgICA8L2RlZnM+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAtMSAwIDI0KSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6Ii8+CiAgICAgICAgPHVzZSBzdHJva2U9IiNGRkYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgdHJhbnNmb3JtPSJzY2FsZSgxIC0xKSByb3RhdGUoLTQ1IC0xMS43NDIgMCkiIHhsaW5rOmhyZWY9IiNkdzQzeDFlM3lhIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="open_arrow"/>
+            </button>
+        </div>
+    </div>
+    </>
   );
 };
 

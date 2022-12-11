@@ -9,6 +9,9 @@ import MainBanner from './components/MainBanner';
 import NotFound from './pages/NotFound';
 import Product from './pages/Product';
 import NewProduct from './pages/NewProduct';
+import BestProduct from './pages/BestProduct';
+import TimeSales from './pages/TimeSales';
+import Benefit from './pages/Benefit';
 
 function App() {
   return (
@@ -39,9 +42,28 @@ function App() {
                       <Product />
                   </MainContent> 
                 }></Route>
-                <Route path='/newproduct' element={
+
+                <Route path='/newproduct' element={ // nav 이동 페이지들
                   <MainContent>                    
                     <NewProduct />
+                    <SideNav/>
+                  </MainContent>
+                }></Route>
+                <Route path='/bestproduct' element={
+                  <MainContent>                    
+                    <BestProduct />
+                    <SideNav/>
+                  </MainContent>
+                }></Route>
+                <Route path='/timeSales' element={
+                  <MainContent>                    
+                    <TimeSales />
+                    <SideNav/>
+                  </MainContent>
+                }></Route>
+                <Route path='/benefit' element={
+                  <MainContent>                    
+                    <Benefit />
                     <SideNav/>
                   </MainContent>
                 }></Route>
