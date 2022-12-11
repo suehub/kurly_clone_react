@@ -70,7 +70,7 @@ function App() {
                       <SideNav/>
                     </MainContent>
                   }></Route>
-                  
+
                   <Route path='*' element={<NotFound />}></Route>
                 </Routes>
               <Footer/>

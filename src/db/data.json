@@ -481,5 +481,97 @@
             "src": "https://product-image.kurly.com/cdn-cgi/image/width=1050,format=auto/banner/event/cbc7b9b4-223a-49e3-9c41-6fded7d45a81.jpg",
             "alt": "221208 [마켓][특가전] 겨울 호캉스 맛집, 제주 인기숙소 특가! 10만원대부터!"
         }
+    ],
+    "reviewImgs" : [
+        {
+            "id": 1,
+            "url": "https://img-cf.kurly.com/cdn-cgi/image/width=640,height=640,quality=90/shop/data/review/20221205/55f3988c-c913-4bf4-9517-99e8d7118b6e.jpeg"
+        },
+        {
+            "id": 2,
+            "url": "https://img-cf.kurly.com/cdn-cgi/image/width=640,height=640,quality=90/shop/data/review/20221205/101bbc3a-b6b4-451b-a812-031f87bb8f42.jpg"
+        },
+        {
+            "id": 3,
+            "url": "https://img-cf.kurly.com/cdn-cgi/image/width=640,height=640,quality=90/shop/data/review/20221201/6530e701-58f0-492e-a9e4-2e9c1796d3ab.jpeg"
+        },
+        {
+            "id": 4,
+            "url": "https://img-cf.kurly.com/cdn-cgi/image/width=640,height=640,quality=90/shop/data/review/20221201/eaf33a3b-073d-47b4-980b-170c8a2ddf67.jpeg"
+        },
+        {
+            "id": 5,
+            "url": "https://img-cf.kurly.com/cdn-cgi/image/width=640,height=640,quality=90/shop/data/review/20221201/eae0f7ec-eb89-41ef-af9d-e08bd8dc617e.jpg"
+        },
+        {
+            "id": 6,
+            "url": "https://img-cf.kurly.com/cdn-cgi/image/width=640,height=640,quality=90/shop/data/review/20221130/547c4157-12c1-4b57-8f0c-2e6ff85bf21c.jpg"
+        },
+        {
+            "id": 7,
+            "url": "https://img-cf.kurly.com/cdn-cgi/image/width=640,height=640,quality=90/shop/data/review/20221126/c98e14fe-8888-4cda-b69a-55bf69a6a7d5.jpeg"
+        },
+        {
+            "id": 8,
+            "url": "https://img-cf.kurly.com/cdn-cgi/image/width=640,height=640,quality=90/shop/data/review/20221125/a1bec05b-26c7-4b25-aff3-373b98cbce6c.jpeg"
+        }
+    ],
+    "reviewArticles" : [
+        {
+            "id": 1,
+            "name": "이**",
+            "content": "베이킹할때 밀가루대신 사용하니좋아요",
+            "img" : "",
+            "date": "2022.12.11"
+        },
+        {
+            "id": 2,
+            "name": "김**",
+            "content": "사실 아직 안먹어봤는데 오트밀은 먹어봤어서 신뢰됩니다 포장재가 바뀌면 좋겠다 싶기도한데 그럴 이유가 있겠죠",
+            "img" : "",
+            "date": "2022.12.09"
+        },
+        {
+            "id": 3,
+            "name": "백**",
+            "content": "쿠키 만들어 먹으려고 샀어요",
+            "img" : "",
+            "date": "2022.12.07"
+        },
+        {
+            "id": 4,
+            "name": "최**",
+            "content": "양이 꽤 되네요. 따로 옮겨두고 먹어야해여. 지퍼백 이런 형태가 아니라 옮겨닮을 용기가 필요해요",
+            "img" : "https://img-cf.kurly.com/cdn-cgi/image/width=640,height=640,quality=90/shop/data/review/20221205/55f3988c-c913-4bf4-9517-99e8d7118b6e.jpeg",
+            "date": "2022.12.05"
+        },
+        {
+            "id": 5,
+            "name": "이**",
+            "content": "베이킹할때 밀가루대신 사용하니좋아요",
+            "img" : "",
+            "date": "2022.12.11"
+        },
+        {
+            "id": 6,
+            "name": "김**",
+            "content": "사실 아직 안먹어봤는데 오트밀은 먹어봤어서 신뢰됩니다 포장재가 바뀌면 좋겠다 싶기도한데 그럴 이유가 있겠죠",
+            "img" : "",
+            "date": "2022.12.09"
+        },
+        {
+            "id": 7,
+            "name": "백**",
+            "content": "쿠키 만들어 먹으려고 샀어요",
+            "img" : "",
+            "date": "2022.12.07"
+        },
+        {
+            "id": 8,
+            "name": "최**",
+            "content": "양이 꽤 되네요. 따로 옮겨두고 먹어야해여. 지퍼백 이런 형태가 아니라 옮겨닮을 용기가 필요해요",
+            "img" : "https://img-cf.kurly.com/cdn-cgi/image/width=640,height=640,quality=90/shop/data/review/20221205/55f3988c-c913-4bf4-9517-99e8d7118b6e.jpeg",
+            "date": "2022.12.05"
+        }
     ]
 }

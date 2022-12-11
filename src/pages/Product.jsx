@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import ButtonToTop from "../components/ButtonToTop";
 import "../components/contents.css";
 import "./product.css";
+import reviewImgs from "../db/data.json";
+import reviewLists from "../db/data.json";
 
 export default function Product() {
 
@@ -308,11 +310,120 @@ export default function Product() {
                 </div>
                 <div className="detail2">
                     <h3>상품고시정보</h3>
-                    <ul></ul>
+                    <ul className="detailUl">
+                        <li className="leftLi">식품등의표시·광고에관한법률에 따른 표시사항</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                        <li className="leftLi">제품명</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                        <li className="leftLi">식품의 유형</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                        <li className="leftLi">생산자 및 소재지(수입품의 경우 생산자, 수입자 및 제조국)</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                        <li className="leftLi">제조연원일, 유통기한 또는 품질유지기한</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                        <li className="leftLi">포장단위별 내용물의 용량(중량), 수량</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                        <li className="leftLi">원재료명 및 함량(농수산물의 원산지 표시에 관한 법률에 따른 원산지 표시 포함)</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                        <li className="leftLi">영양성분(식품등의표시·광고에관한법률에 따른 영양성분 표시대상 식품에 한함)</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                        <li className="leftLi">유전자변형식품에 해당하는 경우의 표시</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                        <li className="leftLi">소비자안전을 위한 주의사항</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                        <li className="leftLi">수입식품에 해당하는 경우 "수입식품안전관리특별법에 따른 수입신고를 필함"의 문구</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                        <li className="leftLi">소비자상담 관련 전화번호</li>
+                        <li className="rightLi">상품설명 및 상품이미지 참조</li>
+                    </ul>
                 </div>
             </div>
-            <div className="review"></div>
-            <div className="inquiry"></div>
+            <div className="review">
+                <section style={{"padding":"72px 0px"}}>
+                    <header className="reviewHeader">
+                        <h2>상품 후기</h2>
+                    </header>
+                    <ul className="reviewUl">
+                        <li className="reviewLi">사진후기 100원, 글후기 50원 적립금 혜택이 있어요.</li>
+                        <li className="reviewLi">퍼플, 더퍼플은 2배 적립 (사진 200원, 글 100원) / 주간 베스트 후기로 선정 시 5,000원을 추가 적립</li>
+                        <li className="reviewLi">후기 작성은 배송완료일로부터 30일 이내 가능합니다.</li>
+                        <li className="reviewLi">작성하신 후기는 확인 후 적립금이 지급됩니다. (영업일 기준 평균 1~2일 소요)</li>
+                    </ul>
+                    <div className="reviewImgWrapper">
+                        {reviewImgs.reviewImgs.map((reviewImg) => (
+                            <button style={{"background":`url(${reviewImg.url}) 0% 0% / cover no-repeat`}} />
+                        ))}
+                        <a className="reviewMore">
+                            <span>더보기</span>
+                        </a>
+                    </div>
+                    <div className="reviewLists">
+                        <div style={{"position":"absolute","top":"-170px","height":"0px"}}></div>
+                        <div style={{"position": "absolute","top": "-36px","width": "100%","font-size": "12px","line-height": "16px"}}>
+                            <span style={{"position":"absolute","left":"0px","font-weight":"500"}}>총 144개</span>
+                            <div style={{"display":"flex","gap":"17px","align-items":"center","justify-content":"flex-end","font-weight":"400"}}>
+                                <button className="recommandSortButton">추천순</button>
+                                <button className="recentSortButton">최근등록순</button>
+                            </div>
+                        </div>
+                        <div style={{"padding":"21px 20px 20px","border-bottom":"1px solid rgb(238,238,238"}}>
+                            <span className="notice">공지</span>
+                            <button className="infoButton">금주의 베스트 후기 안내</button>
+                        </div>
+                        <div style={{"padding":"21px 20px 20px","border-bottom":"1px solid rgb(238,238,238"}}>
+                            <span className="notice">공지</span>
+                            <button className="infoButton">상품 후기 적립금 정책 안내</button>
+                        </div>
+                        {reviewLists.reviewArticles.map((review) => (
+                        <div className="reviewList">
+                            <div style={{"flex": "0 0 225px"}}>
+                                <div style={{"display":"flex","align-items":"center","margin":"-1px 0px 7px"}}>
+                                    <span className="reviewListBox">프렌즈</span>
+                                    <span style={{"font-weight":"500"}}>{review.name}</span>
+                                </div>
+                            </div>
+                            <article style={{"flex":"1 1 0%","overflow":"hidden"}}>
+                                <div>
+                                    <div className="reviewProName">
+                                        <h3>[마켓컬리 X 울워스] 오트 브란</h3>
+                                    </div>
+                                    <p className="reviewContent">{review.content}</p>
+                                    <div className="reviewListImg">
+                                        {review.url != "" && <button style={{"background": `url(${review.img}) 0% 0% / cover no-repeat`}}></button>}
+                                    </div>
+                                    <footer className="reviewFooter">
+                                        <div>
+                                            <span style={{"color":"rgb(153,153,153)"}}>{review.date}</span>
+                                        </div>
+                                        <button className="reviewButton">
+                                            <span></span>
+                                            <span>도움돼요</span>
+                                        </button>
+                                    </footer>
+                                </div>
+                            </article>
+                        </div>
+                        ))}
+                        
+                       
+                    </div>
+                </section>
+            </div>
+
+            <div className="inquiry">
+                <div style={{"margin-bottom": "60px"}}>
+                    <div style={{"position":"absolute","right":"0px"}}>
+                        <button className="askButton">
+                            <span>문의하기</span>
+                        </button>
+                    </div>
+                    <div style={{"padding-bottom":"40px","letter-spacing":"-0.5px"}}>
+                        <strong className="strongText">상품 문의</strong>
+                    </div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
         </Main>
         {/* // <!-- 하단 상품 선택 --> */}
