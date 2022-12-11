@@ -12,65 +12,68 @@ import NewProduct from './pages/NewProduct';
 import BestProduct from './pages/BestProduct';
 import TimeSales from './pages/TimeSales';
 import Benefit from './pages/Benefit';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
+
   return (
     <>
         <BrowserRouter>
-          <div className='TopBanner'>
-              <div>
-                  <a href="">
-                      <div>지금 가입하고 인기상품 <b>100원</b>에 받아가세요!</div>
-                  </a>
-                  <button type="button"></button>
-              </div>
-          </div>
-          <Header/>
-              <Routes>
-                <Route path='/' element={ // 메인 페이지
-                  <MainContent>
-                      <div>
-                          <MainBanner />
-                          <Contents />
-                      </div>
-                      <SideNav/>
-                  </MainContent> 
-                }/>
-                <Route path='/product' element={  // 상품 상세 페이지
-                  <MainContent>
-                      <SideNav/>
-                      <Product />
-                  </MainContent> 
-                }></Route>
+          <ScrollToTop/>
+            <div className='TopBanner'>
+                <div>
+                    <a href="">
+                        <div>지금 가입하고 인기상품 <b>100원</b>에 받아가세요!</div>
+                    </a>
+                    <button type="button"></button>
+                </div>
+            </div>
+            <Header/>
+                <Routes>
+                  <Route path='/' element={ // 메인 페이지
+                    <MainContent>
+                        <div>
+                            <MainBanner />
+                            <Contents />
+                        </div>
+                        <SideNav />
+                    </MainContent> 
+                  }/>
+                  <Route path='/product' element={  // 상품 상세 페이지
+                    <MainContent>
+                        <SideNav/>
+                        <Product />
+                    </MainContent> 
+                  }></Route>
 
-                <Route path='/newproduct' element={ // nav 이동 페이지들
-                  <MainContent>                    
-                    <NewProduct />
-                    <SideNav/>
-                  </MainContent>
-                }></Route>
-                <Route path='/bestproduct' element={
-                  <MainContent>                    
-                    <BestProduct />
-                    <SideNav/>
-                  </MainContent>
-                }></Route>
-                <Route path='/timeSales' element={
-                  <MainContent>                    
-                    <TimeSales />
-                    <SideNav/>
-                  </MainContent>
-                }></Route>
-                <Route path='/benefit' element={
-                  <MainContent>                    
-                    <Benefit />
-                    <SideNav/>
-                  </MainContent>
-                }></Route>
-                <Route path='*' element={<NotFound />}></Route>
-                 
-              </Routes>
-            <Footer/>
+                  <Route path='/newproduct' element={ // nav 이동
+                    <MainContent>                    
+                      <NewProduct />
+                      <SideNav/>
+                    </MainContent>
+                  }></Route>
+                  <Route path='/bestproduct' element={
+                    <MainContent>                    
+                      <BestProduct />
+                      <SideNav/>
+                    </MainContent>
+                  }></Route>
+                  <Route path='/timeSales' element={
+                    <MainContent>                    
+                      <TimeSales />
+                      <SideNav/>
+                    </MainContent>
+                  }></Route>
+                  <Route path='/benefit' element={
+                    <MainContent>                    
+                      <Benefit />
+                      <SideNav/>
+                    </MainContent>
+                  }></Route>
+                  
+                  <Route path='*' element={<NotFound />}></Route>
+                </Routes>
+              <Footer/>
         </BrowserRouter>
         
     </>
@@ -83,3 +86,4 @@ const MainContent = styled.div`
   position: relative; 
   margin: 0 auto 40px auto;
 `;
+

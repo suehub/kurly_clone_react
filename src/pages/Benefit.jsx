@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import ButtonToTop from '../components/ButtonToTop';
 import imgs from '../db/data.json';
 
 export default function Benefit() {
@@ -14,6 +15,7 @@ export default function Benefit() {
                 </li>
             ))} 
         </Ul>
+        <ButtonToTop/>
     </div>
   )
 }

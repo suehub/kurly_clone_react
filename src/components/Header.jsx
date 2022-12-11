@@ -92,7 +92,7 @@ export default function Header() {
 
                     <ListHover>
                         <ul className="navUl">
-                            <li><span><Link to="/newProduct">신상품</Link></span></li>
+                            <li><span><Link to="/newproduct">신상품</Link></span></li>
                             <li><span><Link to="/bestproduct">베스트</Link></span></li>
                             <li><span><Link to="/timesales">알뜰쇼핑</Link></span></li>
                             <li><span><Link to="/benefit">특가/혜택</Link></span></li>
@@ -120,7 +120,7 @@ export default function Header() {
                     <ListHover>
                         <ul className="navUlScroll">
                             <li><span><Link to="/newProduct">신상품</Link></span></li>
-                            <li><span><Link to="/bestProduct">베스트</Link></span></li>
+                            <li><span><Link to="/bestproduct">베스트</Link></span></li>
                             <li><span><Link to="/timesales">알뜰쇼핑</Link></span></li>
                             <li><span><Link to="/benefit">특가/혜택</Link></span></li>
                         </ul>

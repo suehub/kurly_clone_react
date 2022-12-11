@@ -4,6 +4,7 @@ import filterCategory from '../db/data.json';
 import products from '../db/data.json'
 import './newProduct.css';
 import '../components/contents.css';
+import ButtonToTop from '../components/ButtonToTop';
 
 export default function bestProduct() {
   return (
@@ -230,6 +231,7 @@ export default function bestProduct() {
             </div>
 
         </ProductDiv>
+        <ButtonToTop/>
     </Container>
   )
 }

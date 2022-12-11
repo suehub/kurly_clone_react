@@ -4,6 +4,7 @@ import filterCategory from '../db/data.json';
 import products from '../db/data.json'
 import './newProduct.css';
 import '../components/contents.css';
+import ButtonToTop from '../components/ButtonToTop';
 
 export default function TimeSales() {
     return (
@@ -235,6 +236,7 @@ export default function TimeSales() {
                 </div>
     
             </ProductDiv>
+            <ButtonToTop/>
         </Container>
       )
 }
