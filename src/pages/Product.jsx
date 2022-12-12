@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-scroll';
 import styled from 'styled-components';
 import ButtonToTop from "../components/ButtonToTop";
 import "../components/contents.css";
@@ -171,32 +172,32 @@ export default function Product() {
             <nav className="productDetailNav">
                 <ul>
                     <li>
-                        <a href="">
+                        <Link to="description" spy={true} smooth={true}>
                             <span className="productDetailNavName">상품설명</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="">
+                        <Link to="detail" spy={true} smooth={true} activeClass="active">
                             <span className="productDetailNavName">상세정보</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="">
+                        <Link to="review" spy={true} smooth={true} activeClass="active">
                             <span className="productDetailNavName">후기</span>
                             <span className="count">(133)</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="">
+                        <Link to="inquiry" spy={true} smooth={true} activeClass="active">
                             <span className="productDetailNavName">문의</span>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </nav>
 
             {/* <!-- 상품 디테일 --> */}
         <div>
-            <div className="description">
+            <div id="description" className="description">
                 <div>
                     <div className="goodsWrapper">
                         <div className="goodsNotice">
@@ -304,7 +305,7 @@ export default function Product() {
                 </div>
                 <div className="descriptionDiv"></div>
             </div>
-            <div className="detail">
+            <div id="detail" className="detail">
                 <div className="detail1">
                     <img src="https://img-cf.kurly.com/shop/data/goodsview/20220420/gv30000304877_1.jpg"/>
                 </div>
@@ -338,7 +339,7 @@ export default function Product() {
                     </ul>
                 </div>
             </div>
-            <div className="review">
+            <div id="review "className="review">
                 <section style={{"padding":"72px 0px"}}>
                     <header className="reviewHeader">
                         <h2>상품 후기</h2>
@@ -410,7 +411,7 @@ export default function Product() {
                 </section>
             </div>
 
-            <div className="inquiry">
+            <div id="inquiry" className="inquiry">
                 <div style={{"margin-bottom": "60px"}}>
                     <div style={{"position":"absolute","right":"0px"}}>
                         <button className="askButton">
@@ -419,14 +420,56 @@ export default function Product() {
                     </div>
                     <div style={{"padding-bottom":"40px","letter-spacing":"-0.5px"}}>
                         <strong className="strongText">상품 문의</strong>
+                        <ul className="inquiryUl">
+                            <li>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
+                            <li>
+                                배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내
+                                <a href="">1:1 문의</a>
+                                에 남겨주세요.
+                            </li>
+                        </ul>
                     </div>
-                    <div></div>
-                    <div></div>
+                    <div>
+                        <table className="inquiryTable">
+                            <thead>
+                                <tr>
+                                    <th style={{"width":"710px"}}>제목</th>
+                                    <th style={{"width":"100px"}}>작성자</th>
+                                    <th style={{"width":"100px"}}>작성일</th>
+                                    <th style={{"width":"100px"}}>답변상태</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    <span>공지</span>
+                                    판매 (일시)중단 제품 안내 (22.11.24 업데이트)
+                                    </td>
+                                    <td>컬리</td>
+                                    <td>2017.02.01</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>판매 (일시)중단 제품 안내 (22.11.24 업데이트)</td>
+                                    <td>조*현</td>
+                                    <td>2022.07.19</td>
+                                    <td>답변완료</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="inquiryButton">
+                        <div>
+                            <button></button>
+                            <button></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         </Main>
-        {/* // <!-- 하단 상품 선택 --> */}
+
+        {/* 하단 상품 선택 */}
         <div className={scrollActive ? "productSelect" : "none"}>
             <div>
                 <button>
@@ -449,3 +492,4 @@ const Main = styled.div`
   margin: 0px auto;
   padding-top: 30px;
 `;
+

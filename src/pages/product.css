@@ -384,18 +384,19 @@
     flex-wrap: wrap;
     height: 60px;
 }
-.productDetailNav > ul > li{
+.productDetailNav ul li{
     display: flex;
     flex: 1 1 0%;
     border-width: 1px 0px 1px 1px;
     border-color: rgb(238, 238, 238);
     border-style: solid;
     background-color: rgb(250, 250, 250);
+    color: rgb(102, 102, 102);
+
 }
-.productDetailNav > ul > li > a{
+.productDetailNav ul li a{
     display: flex;
     flex: 1 1 0%;
-    -webkit-box-pack: center;
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
@@ -404,14 +405,20 @@
 .productDetailNavName{
     font-size: 16px;
     font-weight: 500;
-    color: rgb(102, 102, 102);
+    color: inherit;
 }
 .count{
     margin-left: 4px;
     font-size: 14px;
     font-weight: 400;
-    color: rgb(153, 153, 153);
+    color: inherit;
     line-height: 16px;
+}
+a.active{
+    color: #5f0080 !important;
+    background-color: #fff;
+    border-width: 1px 0 0 1px !important;
+
 }
 
 /* 상품 상세 */
@@ -928,4 +935,119 @@ small{
     font-weight: 700;
     line-height: 21px;
     color: rgb(51, 51, 51);
+}
+.inquiryUl{
+    line-height: 19px;
+    font-weight: 400;
+    color: #999;
+}
+.inquiryUl li{
+    padding-left: 10px;
+}
+.inquiryUl li::before{
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    margin: 11px 6px 0 -10px;
+    background: #999;
+    vertical-align: top;
+    content: "";
+}
+.inquiryUl li a{
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 3px;
+    color: inherit;
+}
+.inquiryTable{
+    width: 100%;
+}
+.inquiryTable thead{
+    display: table-header-group;
+    vertical-align: middle;
+    height: 58px;
+    border-top : 2px solid #333;
+    border-bottom: 1px solid #333;
+}
+.inquiryTable tr{
+    display: table-row;
+    text-align: center;
+    vertical-align: inherit;
+}
+.inquiryTable th{
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -.5px;
+    color: #333;
+    vertical-align: inherit;
+}
+tbody{
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+
+}
+tbody tr{
+    height: 64px;
+    border-bottom: 1px solid rgb(244,244,244);
+    letter-spacing: -0.5px;
+    vertical-align: inherit;
+}
+tbody tr td:first-of-type{
+    text-align: left;
+    padding: 0px 20px;
+    cursor: pointer;
+    vertical-align: inherit;
+
+}
+tbody tr td:first-of-type span{
+    display: inline-block;
+    border-radius: 4px;
+    margin-right: 12px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(102, 102, 102);
+    background-color: rgba(102, 102, 102, 0.06);
+}
+tbody tr td:nth-of-type(2), tbody tr td:nth-of-type(3), tbody tr:first-of-type td:nth-of-type(4){
+    text-align: center;
+    color: rgb(153, 153, 153);
+    vertical-align: inherit;
+}
+
+tbody tr:last-of-type td:last-of-type{
+    color: rgb(95, 0, 128);
+    vertical-align: inherit;
+}
+.inquiryButton{
+    position: relative;
+    width: 100%;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.inquiryButton button:first-of-type{
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-prev-activated.svg);    
+    cursor: default;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.inquiryButton button:last-of-type{
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    margin: 0 0 0 12px;
+    border: 0;
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-next-activated.svg);
+    cursor: default;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
