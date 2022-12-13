@@ -12,6 +12,37 @@ export default function Product() {
     const [scrollY, setScrollY] = useState(0);
     const [scrollActive, setScrollActive] = useState(false);
 
+    const [count, setCount] = useState(1);  // 상품 개수 
+    const [price, setPrice] = useState('');  // 총 가격
+
+    // const upProductCount = (productPrice) => {
+    //     let totalPrice = 0;
+
+    //     setCount(count + 1);
+        
+    //     totalPrice =  count * productPrice; 
+    //     let value = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')();
+        
+    //     setPrice(priceToString(value));
+    // }
+
+    // const downProductCount = (productPrice) => {
+    //     let totalPrice = 0;
+
+    //     if(count < 1) return;
+    //     else setCount(count-1);
+
+    //     totalPrice = count * productPrice;
+
+    //     let value = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')();
+        
+    //     setPrice(priceToString(value));
+    // }
+
+    // const priceToString = (price) => {
+    //     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')();
+    // }
+
     const [like, setLike] = useState(0);    // 좋아요 개수 저장 
     const [likeActive, setLikeActive] = useState(false); // 버튼 누른 상태 저장
     
@@ -138,12 +169,12 @@ export default function Product() {
                                     </div>
                                     <div className="selectProductCount">
                                         <div>
-                                            <button className="countMinusButton" type="button" aria-label="수량내리기" disabled=""></button>
-                                            <div className="count countNumber">1</div>
-                                            <button className="countPlusButton" type="button" aria-label="수량올리기"></button>
+                                            <button onClick={() =>( count < 1) ? setCount(count) : setCount(count-1)} className="countMinusButton" type="button" disabled=""></button>
+                                            <div className="count countNumber">{count}</div>
+                                            <button onClick={() => setCount(count+1)} className="countPlusButton" type="button"></button>
                                         </div>
                                         <div>
-                                            <span className="selectPrice">6,500원</span>
+                                            <span className="selectPrice">{count * 6500} 원</span>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +184,7 @@ export default function Product() {
                             <div>
                                 <div className="totalPrice">
                                     <span>총 상품 금액 :</span>
-                                    <span>6,500</span>
+                                    <span>{count * 6500}</span>
                                     <span>원</span>
                                 </div>
                                 <div className="accumulateInfo">
