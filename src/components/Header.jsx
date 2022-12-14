@@ -35,7 +35,7 @@ export default function Header() {
         <div className="HeaderWrapper">
             <div className="Header">
                 <div className="Header1"> 
-                    <a href="" className="HeaderJoin">회원가입</a>
+                    <Link to={"/signup"} className="HeaderJoin">회원가입</Link>
                     <div className="HeaderLine"></div>
                     <a href="">로그인</a>
                     <div className="HeaderLine"></div>

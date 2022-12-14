@@ -15,6 +15,9 @@ export default function Product() {
     const [count, setCount] = useState(1);  // 상품 개수 
     const [price, setPrice] = useState('');  // 총 가격
 
+    const [like, setLike] = useState(0);    // 좋아요 개수 저장 
+    const [isLike, setIsLike] = useState(false); // 버튼 누른 상태 저장
+
     // const upProductCount = (productPrice) => {
     //     let totalPrice = 0;
 
@@ -43,9 +46,6 @@ export default function Product() {
     //     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')();
     // }
 
-    const [like, setLike] = useState(0);    // 좋아요 개수 저장 
-    const [likeActive, setLikeActive] = useState(false); // 버튼 누른 상태 저장
-    
     const scrollFixed = () => {
         if (scrollY > 1000) {    // header height
         setScrollY(window.pageYOffset);
@@ -66,12 +66,13 @@ export default function Product() {
         };
     }, [scrollY, scrollActive]);
 
+
     const onLikeButton = () => {
-        if(likeActive === false) {
-            setLikeActive(true);
+        if(isLike === false) {
+            setIsLike(true);
             setLike((prev) => prev + 1);
         } else{
-            setLikeActive(false);
+            setIsLike(false);
             if(like < 1) return;
             setLike((prev) => prev - 1);
         }
