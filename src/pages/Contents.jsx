@@ -1,13 +1,50 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import styled from 'styled-components';
-import datas from "../db/data.json";
-import ButtonToTop from './ButtonToTop';
+import ButtonToTop from '../components/ButtonToTop';
 import './contents.css';
 
 
 export default function Contents() {
+
+    const[product, setProduct] = useState([]);
+    const[randomList, setRandomList] = useState([]);
+    const[intaReview, setInstaReview] = useState([]);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch('http://localhost:3001/Products') // 비동기 호출 위함. promise 반환됨
+        .then(res => {
+            return res.json()   // res는 http 응답
+        })
+        .then(data => {
+            setProduct(data);
+        });
+    },[]);
+
+    useEffect(() => {
+        fetch('http://localhost:3001/randomLists') // 비동기 호출 위함. promise 반환됨
+        .then(res => {
+            return res.json()   // res는 http 응답
+        })
+        .then(data => {
+            setRandomList(data);
+        });
+    },[]);
+    
+    useEffect(() => {
+        fetch('http://localhost:3001/instaReviews') // 비동기 호출 위함. promise 반환됨
+        .then(res => {
+            return res.json()   // res는 http 응답
+        })
+        .then(data => {
+            setInstaReview(data);
+        });
+    },[]);
+
+
 
     const settings = {
         dots: false,
@@ -41,11 +78,11 @@ export default function Contents() {
             <div className="recommandLists">
                 <div className="SliderWrapper">
                     <Slider {...settings}> 
-                        {datas.Products.map(product => (
+                        {product.map(product => (
                             <div className="swiperList">
                                 <ListMargin>
                                     <div key={product.id} className="swiperListImg">
-                                    <Link to='/product'><img src={product.url} alt="상품 이미지" loading="lazy"/></Link>
+                                        <a><img onClick={() => navigate(`/product/${product.id}`)} src={product.url} alt="상품 이미지" loading="lazy"/></a>
                                     <div className="cartButton">
                                         <button type="button">
                                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHZpZXdCb3g9IjAgMCA0NSA0NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMkEwMDM4IiBvcGFjaXR5PSIuNSIgY3g9IjIyLjUiIGN5PSIyMi41IiByPSIyMi41Ii8+CiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEuMDMgMTQuMzgpIiBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0ibTIwLjQ2IDIuOTEtMi4xNyA5LjIzSDUuODdMMy43MSAyLjkxeiIvPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS13aWR0aD0iMS4yIiBjeD0iMTYuMzUiIGN5PSIxNi44NiIgcj0iMS43Ii8+CiAgICAgICAgICAgIDxjaXJjbGUgc3Ryb2tlLXdpZHRoPSIxLjIiIGN4PSI3LjgyIiBjeT0iMTYuODYiIHI9IjEuNyIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0iTTAgMGgzLjAybDEuNDEgNS45OCIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="장바구니 아이콘"/>
@@ -101,7 +138,7 @@ export default function Contents() {
             </a>
             <div className="randomCollectionListsWrapper">
                 <ul>
-                    {datas.randomLists.map((list) => (
+                    {randomList.map((list) => (
                         <li key={list.id} className='randomCollectionList' href={`/goods/${list.id}`} >
                             <a className='randomCollectionListImgA' href={`/goods/${list.id}`} >
                                 <img className='randomCollectionListImg' src={list.url} alt="상품이미지" loading="lazy"/>
@@ -154,13 +191,11 @@ export default function Contents() {
             <div className="instagramReviewImgs">
                 <div>
                     <Slider {...settings2}>
-                        
-                            {datas.instaReviews.map((review) => (
-                                <a key={review.id} className='instagramImgWrapper' href=''>
-                                    <img src={review.url} alt='인스타그램 리뷰 사진' />
-                                </a>
-                            ))}
-                    
+                        {intaReview.map((review) => (
+                            <a key={review.id} className='instagramImgWrapper' href=''>
+                                <img src={review.url} alt='인스타그램 리뷰 사진' />
+                            </a>
+                        ))}
                     </Slider>
                 </div>
                 <button className="instagramReviewNextButton" type="button"></button>  

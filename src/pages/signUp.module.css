@@ -74,7 +74,7 @@
     width: 120px;
     margin-left: 8px;
 }
-.button > button{
+.button > button, .disabled > button{
     display: block;
     padding: 0px 10px;
     text-align: center;
@@ -87,7 +87,25 @@
     border: 1px solid rgb(95, 0, 128);
     cursor: pointer;
 }
-.button > button > span{
+.button > button:invalid{
+    border-color: rgb(221, 221, 221);
+    color: rgb(221, 221, 221);
+    height: 44px;
+    border-radius: 3px;
+    cursor: default;
+}
+.disabled{
+    width: 120px;
+    margin-left: 8px;
+}
+.disabled > button{
+    border-color: rgb(221, 221, 221);
+    color: rgb(221, 221, 221);
+    height: 44px;
+    border-radius: 3px;
+    cursor: default;
+}
+.button > button > span, .disabled > button > span{
     font-weight: 500;
     font-size: 14px;
     display: inline-block;

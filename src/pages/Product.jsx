@@ -2,49 +2,43 @@ import React, { useEffect, useState } from "react";
 import { Link } from 'react-scroll';
 import styled from 'styled-components';
 import ButtonToTop from "../components/ButtonToTop";
-import "../components/contents.css";
+import "./contents.css";
 import "./product.css";
-import reviewImgs from "../db/data.json";
-import reviewLists from "../db/data.json";
+import ReviewList from "../components/ReviewList";
+import { useLocation } from "react-router-dom";
 
 export default function Product() {
+
+    const{product} = useLocation();
+
+    const[review, setReveiw] = useState([]);
+    const[reviewImg, setReviewImg] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3001/reviewArticles') // 비동기 호출 위함. promise 반환됨
+        .then(res => {
+            return res.json()   // res는 http 응답
+        })
+        .then(data => {
+            setReveiw(data);
+        });
+    },[]);
+
+    useEffect(() => {
+        fetch('http://localhost:3001/reviewImgs') // 비동기 호출 위함. promise 반환됨
+        .then(res => {
+            return res.json()   // res는 http 응답
+        })
+        .then(data => {
+            setReviewImg(data);
+        });
+    },[]);
 
     const [scrollY, setScrollY] = useState(0);
     const [scrollActive, setScrollActive] = useState(false);
 
     const [count, setCount] = useState(1);  // 상품 개수 
     const [price, setPrice] = useState('');  // 총 가격
-
-    const [like, setLike] = useState(0);    // 좋아요 개수 저장 
-    const [isLike, setIsLike] = useState(false); // 버튼 누른 상태 저장
-
-    // const upProductCount = (productPrice) => {
-    //     let totalPrice = 0;
-
-    //     setCount(count + 1);
-        
-    //     totalPrice =  count * productPrice; 
-    //     let value = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')();
-        
-    //     setPrice(priceToString(value));
-    // }
-
-    // const downProductCount = (productPrice) => {
-    //     let totalPrice = 0;
-
-    //     if(count < 1) return;
-    //     else setCount(count-1);
-
-    //     totalPrice = count * productPrice;
-
-    //     let value = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')();
-        
-    //     setPrice(priceToString(value));
-    // }
-
-    // const priceToString = (price) => {
-    //     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')();
-    // }
 
     const scrollFixed = () => {
         if (scrollY > 1000) {    // header height
@@ -66,17 +60,6 @@ export default function Product() {
         };
     }, [scrollY, scrollActive]);
 
-
-    const onLikeButton = () => {
-        if(isLike === false) {
-            setIsLike(true);
-            setLike((prev) => prev + 1);
-        } else{
-            setIsLike(false);
-            if(like < 1) return;
-            setLike((prev) => prev - 1);
-        }
-    }
 
     return (
         <>
@@ -175,7 +158,7 @@ export default function Product() {
                                             <button onClick={() => setCount(count+1)} className="countPlusButton" type="button"></button>
                                         </div>
                                         <div>
-                                            <span className="selectPrice">{count * 6500} 원</span>
+                                            <span className="selectPrice">{(count * 6500).toLocaleString('ko-KR')} 원</span>
                                         </div>
                                     </div>
                                 </div>
@@ -185,7 +168,7 @@ export default function Product() {
                             <div>
                                 <div className="totalPrice">
                                     <span>총 상품 금액 :</span>
-                                    <span>{count * 6500}</span>
+                                    <span>{(count * 6500).toLocaleString('ko-KR')}</span>
                                     <span>원</span>
                                 </div>
                                 <div className="accumulateInfo">
@@ -397,7 +380,7 @@ export default function Product() {
                         <li className="reviewLi">작성하신 후기는 확인 후 적립금이 지급됩니다. (영업일 기준 평균 1~2일 소요)</li>
                     </ul>
                     <div className="reviewImgWrapper">
-                        {reviewImgs.reviewImgs.map((reviewImg) => (
+                        {reviewImg.map((reviewImg) => (
                             <button style={{"background":`url(${reviewImg.url}) 0% 0% / cover no-repeat`}} />
                         ))}
                         <a className="reviewMore">
@@ -421,35 +404,9 @@ export default function Product() {
                             <span className="notice">공지</span>
                             <button className="infoButton">상품 후기 적립금 정책 안내</button>
                         </div>
-                        {reviewLists.reviewArticles.map((review) => (
-                        <div className="reviewList">
-                            <div style={{"flex": "0 0 225px"}}>
-                                <div>
-                                    <span className="reviewListBox">일반</span>
-                                    <span style={{"font-weight":"500"}}>{review.name}</span>
-                                </div>
-                            </div>
-                            <article style={{"flex":"1 1 0%","overflow":"hidden"}}>
-                                <div>
-                                    <div className="reviewProName">
-                                        <h3>[마켓컬리 X 울워스] 오트 브란</h3>
-                                    </div>
-                                    <p className="reviewContent">{review.content}</p>
-                                    <div className="reviewListImg">
-                                        {review.url != "" && <button style={{"background": `url(${review.img}) 0% 0% / cover no-repeat`}}></button>}
-                                    </div>
-                                    <footer className="reviewFooter">
-                                        <div>
-                                            <span style={{"color":"rgb(153,153,153)"}}>{review.date}</span>
-                                        </div>
-                                        <LikeHover>
-                                            <span></span>
-                                            <span onClick={onLikeButton}>도움돼요 {(like != 0) && like}</span>
-                                        </LikeHover>
-                                    </footer>
-                                </div>
-                            </article>
-                        </div>
+
+                        {review.map((review) => (
+                            <ReviewList review={review} key={review.id}/>
                         ))}
                         
                        
@@ -537,30 +494,4 @@ const Main = styled.div`
   width: 1050px;
   margin: 0px auto;
   padding-top: 30px;
-`;
-
-const LikeHover = styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 88px;
-    height: 32px;
-    padding: 0px 13px 0px 11px;
-    border: 1px solid rgb(226, 226, 226);
-    border-radius: 20px;
-    font-size: 12px;
-    line-height: 20px;
-    color: rgb(153, 153, 153);
-    span:first-of-type{
-        width: 15px;
-        height: 15px;
-        margin-right: 4px;
-        background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIKICAgICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoCiAgICBkPSJNNC4wNDgzNyAxMi45OTk4SDIuMjE5MzVDMS41NDU5MiAxMi45OTk4IDEgMTIuNDYyNiAxIDExLjc5OTlWNy41OTk5MkMxIDYuOTM3MTggMS41NDU5MiA2LjM5OTkzIDIuMjE5MzUgNi4zOTk5M0g0LjA0ODM3TTguMzE2MDggNS4xOTk5NVYyLjc5OTk4QzguMzE2MDggMS44MDU4OCA3LjQ5NzIgMSA2LjQ4NzA2IDFMNC4wNDgzNyA2LjM5OTkzVjEyLjk5OTlIMTAuOTI1NUMxMS41MzM1IDEzLjAwNjYgMTIuMDUzNyAxMi41NzE1IDEyLjE0NDggMTEuOTc5OUwxMi45ODYyIDYuNTc5OTNDMTMuMDM5OSA2LjIzMTg1IDEyLjkzNTUgNS44NzgxMiAxMi43MDA4IDUuNjEyNDVDMTIuNDY2IDUuMzQ2NzggMTIuMTI0NiA1LjE5NTk2IDExLjc2NjggNS4xOTk5NUg4LjMxNjA4WiIKICAgIHN0cm9rZT0iIzk5OTk5OSIgc3Ryb2tlLXdpZHRoPSIxLjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICAgIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==) center center no-repeat;
-    }
-    :hover{
-        color: rgb(95, 0, 128); 
-    }
-    :hover span:first-of-type{
-        background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIKICAgICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoCiAgICBkPSJNNC4wNDgzNyAxMi45OTk4SDIuMjE5MzVDMS41NDU5MiAxMi45OTk4IDEgMTIuNDYyNiAxIDExLjc5OTlWNy41OTk5MkMxIDYuOTM3MTggMS41NDU5MiA2LjM5OTkzIDIuMjE5MzUgNi4zOTk5M0g0LjA0ODM3TTguMzE2MDggNS4xOTk5NVYyLjc5OTk4QzguMzE2MDggMS44MDU4OCA3LjQ5NzIgMSA2LjQ4NzA2IDFMNC4wNDgzNyA2LjM5OTkzVjEyLjk5OTlIMTAuOTI1NUMxMS41MzM1IDEzLjAwNjYgMTIuMDUzNyAxMi41NzE1IDEyLjE0NDggMTEuOTc5OUwxMi45ODYyIDYuNTc5OTNDMTMuMDM5OSA2LjIzMTg1IDEyLjkzNTUgNS44NzgxMiAxMi43MDA4IDUuNjEyNDVDMTIuNDY2IDUuMzQ2NzggMTIuMTI0NiA1LjE5NTk2IDExLjc2NjggNS4xOTk5NUg4LjMxNjA4WiIKICAgIHN0cm9rZT0iIzVmMDA4MCIgc3Ryb2tlLXdpZHRoPSIxLjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICAgIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==) center center no-repeat;
-    }
 `;

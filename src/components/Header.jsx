@@ -191,12 +191,15 @@ const CategoryHover = styled.div`
 
 const ListHover = styled.div`
     span:hover{
-        color: rgb(95, 0, 128);
+        
         text-decoration: underline; 
         text-underline-position : under;
     }
     span>a:link, span>a:visited{
         color: rgb(51, 51, 51);
+    }
+    span>a:hover{
+        color: rgb(95, 0, 128);
     }
     span>a:active { // 클릭하고 있을 때
         color: rgb(95, 0, 128);

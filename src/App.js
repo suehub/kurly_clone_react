@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Contents from './components/Contents';
+import Contents from './pages/Contents';
 import SideNav from './components/SideNav';
 import MainBanner from './components/MainBanner';
 import NotFound from './pages/NotFound';
@@ -43,7 +43,7 @@ function App() {
                   }/>
                   <Route path='/signup' element={<SignUp/>}></Route>
                   <Route path='/login' element={<LogIn/>}></Route>
-                  <Route path='/product' element={  // 상품 상세 페이지
+                  <Route path='/product/:id' element={  // 상품 상세 페이지
                     <MainContent>
                         <SideNav/>
                         <Product />
