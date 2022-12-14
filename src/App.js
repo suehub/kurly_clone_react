@@ -14,6 +14,7 @@ import TimeSales from './pages/TimeSales';
 import Benefit from './pages/Benefit';
 import ScrollToTop from './components/ScrollToTop';
 import SignUp from './pages/SignUp';
+import LogIn from './pages/LogIn';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
                     </MainContent> 
                   }/>
                   <Route path='/signup' element={<SignUp/>}></Route>
+                  <Route path='/login' element={<LogIn/>}></Route>
                   <Route path='/product' element={  // 상품 상세 페이지
                     <MainContent>
                         <SideNav/>
