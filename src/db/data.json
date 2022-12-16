@@ -23,50 +23,58 @@
   ],
   "Products": [
     {
-      "id": 1,
+      "id": 5115219,
       "name": "[마켓컬리 X 울워스] 오트 브란",
+      "info": "귀리의 영양을 그대로 담은 이색 오트밀",
       "price": "6,500",
       "url": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1650430833824l0.jpg"
     },
     {
-      "id": 2,
+      "id": 5056795,
       "name": "미니 파프리카 200g",
-      "price": "3,710",
+      "info": "아담하고 알록달록한",
+      "price": "3,710",      
       "url": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/165303830429l0.jpeg"
     },
     {
-      "id": 3,
+      "id": 5042022,
       "name": "[히스파수르] 골드 엑스트라 버진 피쿠알 2종",
+      "info": "(오일풀링 가능) 월드베스트 골드수상! 풋토마토와 아몬드의 풍미 ",
       "price": "47,200",
       "url": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1578294213553l0.jpg"
     },
     {
-      "id": 4,
+      "id": 5114700,
       "name": "[풀무원] 피에몬테식 파스타 머쉬룸크림 (2인분)",
+      "info": "트러플오일의 강렬한 향과 맛이 탱글 버섯 식감을 더한",
       "price": "8,980",
       "url": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1644554762774l0.jpg"
     },
     {
-      "id": 5,
+      "id": 5157261,
       "name": "[LG전자] 코드제로 A9S 오브제 컬렉션 청소기 AU9882GD",
+      "info": "",
       "price": "1,162,900",
       "url": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1657435516272l0.jpg"
     },
     {
-      "id": 6,
+      "id": 5090365,
       "name": "[삼성전자] 그랑데 WF24T8000KV+DV17T8520BV+스태킹키트",
+      "info": "",
       "price": "6,500",
       "url": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/163367932310l0.jpg"
     },
     {
-      "id": 7,
-      "name": "[마켓컬리 X 울워스] 오트 브란",
-      "price": "1,893,400",
-      "url": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1653035080408l0.jpg"
+      "id": 5106496,
+      "name": "[선물세트] 담백견과 4종세트 2호",
+      "info": "알차게 꾸려 담은 견과 세트",
+      "price": "17,900",
+      "url": "https://img-cf.kurly.com/shop/data/goods/1641454351177l0.jpg"
     },
     {
-      "id": 8,
+      "id": 5104155,
       "name": "[곰표x콜린스그린] 그래놀라 요거트",
+      "info": "번거로움 없는 간편한 구성",
       "price": "2,900",
       "url": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1577341240262l0.jpg"
     }

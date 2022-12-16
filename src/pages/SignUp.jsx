@@ -8,8 +8,11 @@ export default function SignUp() {
 
     const onInput = (e) => {
         setTel(e.target.value);
-        setIsTel(true);
-        if(tel == "") setIsTel(false);
+        if(e.target.value){
+            setIsTel(true);
+            return;
+        } 
+        setIsTel(false);
         console.log(tel);
     }
 

@@ -4,7 +4,6 @@ import styles from './reviewLists.module.css';
 
 export default function ReviewList({review}) {
 
-    
     const [like, setLike] = useState(review.like);    // 좋아요 개수 저장 
     const [isLike, setIsLike] = useState(review.isLike); // 버튼 누른 상태 저장
 
@@ -73,7 +72,7 @@ export default function ReviewList({review}) {
                             </div>
                             <div className={isLike ? styles.likeHover : styles.like}>
                                 <span></span>
-                                <span onClick={onLikeButton}>도움돼요 {review.like !== 0 && review.like}</span>
+                                <span onClick={onLikeButton}>도움돼요 {like !== 0 && like}</span>
                             </div>
                         </footer>
                     </div>

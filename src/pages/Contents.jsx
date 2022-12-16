@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import ButtonToTop from '../components/ButtonToTop';
+import datas from '../db/data.json';
 import './contents.css';
 
 
@@ -14,35 +15,35 @@ export default function Contents() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetch('http://localhost:3001/Products') // 비동기 호출 위함. promise 반환됨
-        .then(res => {
-            return res.json()   // res는 http 응답
-        })
-        .then(data => {
-            setProduct(data);
-        });
-    },[]);
+    // useEffect(() => {
+    //     fetch('http://localhost:3001/Products') // 비동기 호출 위함. promise 반환됨
+    //     .then(res => {
+    //         return res.json()   // res는 http 응답
+    //     })
+    //     .then(data => {
+    //         setProduct(data);
+    //     });
+    // },[]);
 
-    useEffect(() => {
-        fetch('http://localhost:3001/randomLists') // 비동기 호출 위함. promise 반환됨
-        .then(res => {
-            return res.json()   // res는 http 응답
-        })
-        .then(data => {
-            setRandomList(data);
-        });
-    },[]);
+    // useEffect(() => {
+    //     fetch('http://localhost:3001/randomLists') // 비동기 호출 위함. promise 반환됨
+    //     .then(res => {
+    //         return res.json()   // res는 http 응답
+    //     })
+    //     .then(data => {
+    //         setRandomList(data);
+    //     });
+    // },[]);
     
-    useEffect(() => {
-        fetch('http://localhost:3001/instaReviews') // 비동기 호출 위함. promise 반환됨
-        .then(res => {
-            return res.json()   // res는 http 응답
-        })
-        .then(data => {
-            setInstaReview(data);
-        });
-    },[]);
+    // useEffect(() => {
+    //     fetch('http://localhost:3001/instaReviews') // 비동기 호출 위함. promise 반환됨
+    //     .then(res => {
+    //         return res.json()   // res는 http 응답
+    //     })
+    //     .then(data => {
+    //         setInstaReview(data);
+    //     });
+    // },[]);
 
 
 
@@ -78,7 +79,7 @@ export default function Contents() {
             <div className="recommandLists">
                 <div className="SliderWrapper">
                     <Slider {...settings}> 
-                        {product.map(product => (
+                        {datas.Products.map(product => (
                             <div className="swiperList">
                                 <ListMargin>
                                     <div key={product.id} className="swiperListImg">
@@ -138,12 +139,12 @@ export default function Contents() {
             </a>
             <div className="randomCollectionListsWrapper">
                 <ul>
-                    {randomList.map((list) => (
-                        <li key={list.id} className='randomCollectionList' href={`/goods/${list.id}`} >
-                            <a className='randomCollectionListImgA' href={`/goods/${list.id}`} >
+                    {datas.randomLists.map((list) => (
+                        <li key={list.id} className='randomCollectionList' href={`/product/${list.id}`} >
+                            <a className='randomCollectionListImgA' href={`/product/${list.id}`} >
                                 <img className='randomCollectionListImg' src={list.url} alt="상품이미지" loading="lazy"/>
                             </a>
-                            <a className='randomCollectionProduct' href={`/goods/${list.id}`}>
+                            <a className='randomCollectionProduct' href={`/product/${list.id}`}>
                                 <p className='randomCollectionProductName'>{list.name}</p>
                                 <div>
                                     <div className='discountPercent'>{list.discount}</div>
@@ -191,7 +192,7 @@ export default function Contents() {
             <div className="instagramReviewImgs">
                 <div>
                     <Slider {...settings2}>
-                        {intaReview.map((review) => (
+                        {datas.instaReviews.map((review) => (
                             <a key={review.id} className='instagramImgWrapper' href=''>
                                 <img src={review.url} alt='인스타그램 리뷰 사진' />
                             </a>
