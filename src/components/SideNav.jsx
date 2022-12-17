@@ -9,18 +9,14 @@ export default function SideNav() {
             <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/delivery_search/delivery_search">
                 <img className="sideNavMainImg" src="https://res.kurly.com/_next/static/images/deliveryInfo_20221122-9988ad6f6927b33d079e3f89e9d8826f.png" alt=""/>
             </a>
-            <ul className="sideNavUl">
-                <li>
+            <div className="sideNavUl">
                     <a href="/shop/main/html.php?htmid=event/kurly.htm&amp;name=lovers">
-                        등급별 혜택
+                        <div>등급별 혜택</div>
                     </a>
-                </li>
-                <li>
                     <a href="/shop/board/list.php?id=recipe">
-                        레시피
+                        <div>레시피</div>
                     </a>
-                </li>
-            </ul>
+            </div>
             <div className="recentView">
                 <button disabled className="recentViewButtonTop"></button>
                 <strong>최근 본 상품</strong>

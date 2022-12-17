@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import '../pages/contents.css';
+import React, { useState } from "react";
 import styles from './reviewLists.module.css';
 
 export default function ReviewList({review}) {

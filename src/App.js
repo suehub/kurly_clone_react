@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Contents from './pages/Contents';
+import Main from './pages/Main';
 import SideNav from './components/SideNav';
-import MainBanner from './components/MainBanner';
 import NotFound from './pages/NotFound';
 import Product from './pages/Product';
 import NewProduct from './pages/NewProduct';
@@ -34,10 +33,7 @@ function App() {
                 <Routes>
                   <Route path='/' element={ // 메인 페이지
                     <MainContent>
-                        <div>
-                            <MainBanner />
-                            <Contents />
-                        </div>
+                        <Main />
                         <SideNav />
                     </MainContent> 
                   }/>

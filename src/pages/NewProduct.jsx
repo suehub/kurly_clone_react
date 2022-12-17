@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import filterCategory from '../db/data.json';
 import products from '../db/data.json'
 import './newProduct.css';
-import '../pages/contents.css';
 import ButtonToTop from '../components/ButtonToTop';
 
 export default function NewProduct() {

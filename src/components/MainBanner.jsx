@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import datas from "../db/data.json";
 import styles from './MainBanner.module.css';

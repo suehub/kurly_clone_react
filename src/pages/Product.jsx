@@ -4,10 +4,9 @@ import { Link } from 'react-scroll';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import ButtonToTop from "../components/ButtonToTop";
-import "./contents.css";
-import "./product.css";
 import ReviewList from "../components/ReviewList";
 import datas from '../db/data.json';
+import './product.css';
 
 export default function Product() {
 
