@@ -23,8 +23,8 @@ export default function ProductDetail(props) {
     return (
         <div>
         {/* <!-- 상품 상세 --> */}
-            <div className="productDetailImg"></div>
-            <section className="productDetailSection">
+            {/* <div className="productDetailImg"></div> */}
+            {/* <section className="productDetailSection">
                 <div className="productDetailShipping">샛별배송</div>
                 <div className="productDetailName">
                     <div>
@@ -151,7 +151,7 @@ export default function ProductDetail(props) {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
         </div>
     )
 }

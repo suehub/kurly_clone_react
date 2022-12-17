@@ -1,34 +1,24 @@
+/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-scroll';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import ButtonToTop from "../components/ButtonToTop";
 import "./contents.css";
 import "./product.css";
 import ReviewList from "../components/ReviewList";
 import datas from '../db/data.json';
-import ProductDetail from "../components/ProductDetail";
 
-export default function Product(props) {
+export default function Product() {
 
-    const [product, setProduct] = useState([]);     // product 객체 저장 
-    const params = useParams();
-    // console.log(params);
+    const location = useLocation();
+    const state = location.state;
+    const [product, setProduct] = useState({});     // product 객체 저장 
+    const numPrice = Number((product.price||"").split(',').join(""));
 
     useEffect(() => {
-        // ProductList에서 변경해준 url을 통해 useParams로 해당 product의 id에 접근해 데이터 요청
-        fetch(`http://localhost:3000/product/${params.id}`,{
-            headers : { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            setProduct(data.results);
-        });
-    }, []);
-    
+        setProduct(state);
+    },[]);
 
     // const[review, setReveiw] = useState([]); // api에서 꺼낸 data 값 저장하기 위한 state
     // const[reviewImg, setReviewImg] = useState([]);
@@ -84,7 +74,8 @@ export default function Product(props) {
         <>
         <Main>
         {/* <!-- 상품 상세 --> */}
-        <div className="productDetailImg"></div>
+        <main className="productDetail">
+        <div className="productDetailImg" style={{"background": `url(${product.url}) 0% 0% / cover`}}></div>
         <section className="productDetailSection">
             <div className="productDetailShipping">샛별배송</div>
             <div className="productDetailName">
@@ -92,10 +83,10 @@ export default function Product(props) {
                     <h1>{product.name}</h1>
                     <button></button>
                 </div>
-                <h2>귀리의 영양을 그대로 담은 이색 오트밀</h2>
+                <h2>{product.info}</h2>
             </div>
             <h2 className="productDetailPrice">
-                <span>6,500</span>
+                <span>{product.price}</span>
                 <span>원</span>
             </h2>
             <div className="productDetailText">
@@ -166,7 +157,7 @@ export default function Product(props) {
                         <dt className="dtTitle">상품선택</dt>
                         <div className="productDetailSelectBox">
                             <div className="selectProductName">
-                                <span>[마켓컬리 X 울어스] 오트 브란</span>
+                                <span>{product.name}</span>
                             </div>
                             <div className="selectProductCount">
                                 <div>
@@ -175,7 +166,7 @@ export default function Product(props) {
                                     <button onClick={() => setCount(count+1)} className="countPlusButton" type="button"></button>
                                 </div>
                                 <div>
-                                    <span className="selectPrice">{(count * 6500).toLocaleString('ko-KR')} 원</span>
+                                    <span className="selectPrice">{(count * numPrice).toLocaleString('ko-KR')} 원</span>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +176,7 @@ export default function Product(props) {
                     <div>
                         <div className="totalPrice">
                             <span>총 상품 금액 :</span>
-                            <span>{(count * 6500).toLocaleString('ko-KR')}</span>
+                            <span>{(count * numPrice).toLocaleString('ko-KR')}</span>
                             <span>원</span>
                         </div>
                         <div className="accumulateInfo">
@@ -213,6 +204,7 @@ export default function Product(props) {
                 </div>
             </div>
         </section>
+        </main>
     
         {/* <!-- 상품 정보 --> */}
             <main className="productDetail">
@@ -346,7 +338,6 @@ export default function Product(props) {
                         </div>
                     </div>
                 </section> */}
-                <ProductDetail product={product}/>
             </main> 
             
         {/* <!-- 상품 디테일 nav --> */}
