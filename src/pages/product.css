@@ -106,18 +106,39 @@
     letter-spacing: -0.5px;
     border: none;
 }
-.productDetailPrice > span:nth-child(1){
+.discount{
+    padding-right: 9px;
+    font-size: 28px;
+    color: #fa622f;
+}
+.price{
     padding-right: 4px;
     font-size: 28px;
     color: rgb(51, 51, 51);
 }
-.productDetailPrice > span:nth-child(2){
+.productDetailPrice > span:last-child{
     display: inline-block;
     position: relative;
     top: 3px;
     font-size: 18px;
     color: rgb(51, 51, 51);
     vertical-align: top;
+}
+.productDetailPriceOrigin{
+    display: inline-block;
+    font-size: 16px;
+    color: #b5b5b5;
+    letter-spacing: -0.5px;
+    padding-top: 9px;
+    text-decoration: line-through;
+    margin-right: 0;
+}
+.productDetailPriceOrigin img{
+    width: 21px;
+    height: 21px;
+    vertical-align: -4px;
+    padding-left: 1px;
+    cursor: pointer;
 }
 .productDetailText{
     font-size: 14px;

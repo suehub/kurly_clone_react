@@ -13,7 +13,10 @@ export default function Product() {
     const location = useLocation();     // useLocation은 경로 정보를 담고 있는 객체를 반환
     const state = location.state;       // state는 전달 받은 객체
     const [product, setProduct] = useState({});     // product 객체 저장 
-    const numPrice = Number((product.price||"").split(',').join(""));
+
+    let price = Number((product.price||"").split(',').join(""));
+    let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
 
     useEffect(() => {
         setProduct(state);  
@@ -60,9 +63,17 @@ export default function Product() {
                 <h2>{product.info}</h2>
             </div>
             <h2 className="productDetailPrice">
-                <span>{product.price}</span>
+                {product.discount && <span className="discount">{product.discount}%</span>}
+                {product.discount ? <span className="price">{totalPrice}</span> : <span className="price">{product.price}</span>}
                 <span>원</span>
             </h2>
+            {product.discount && 
+                <span className="productDetailPriceOrigin">
+                    {product.price}
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMSAyMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBzdHJva2U9IiNDQ0MiIHN0cm9rZS13aWR0aD0iMS4yIiBjeD0iMTAuNSIgY3k9IjEwLjUiIHI9IjYuOSIvPgogICAgICAgIDxwYXRoIGQ9Ik03LjggOC43MzJoMS4zOTdjLjA0OC0uNzI2LjU0MS0xLjE5IDEuMzA4LTEuMTkuNzUgMCAxLjI1LjQ0NyAxLjI1IDEuMDY1IDAgLjU0LS4yMS44NS0uODE0IDEuMjRsLS4xNzQuMTFjLS44Mi40ODEtMS4xNjUgMS4wMTctMS4xMTIgMS45MDhsLjAwNi40MDVoMS4zOHYtLjM0YzAtLjU4OC4yMi0uODkxLjk5OC0xLjM0OS44MS0uNDgyIDEuMjYxLTEuMTE4IDEuMjYxLTIuMDI3IDAtMS4zMTUtMS4wODgtMi4yNTQtMi43MTctMi4yNTQtMS43NjYgMC0yLjczNSAxLjAyMy0yLjc4MyAyLjQzMnptMi42MTYgNi4zNzRjLS41OTQgMC0uOTg3LS4zNzUtLjk4Ny0uOTQ1IDAtLjU3Ny4zOTMtLjk1Mi45ODctLjk1Mi42MDcgMCAuOTg3LjM3NS45ODcuOTUyIDAgLjU3LS4zOC45NDUtLjk4Ny45NDV6IiBmaWxsPSIjQ0NDIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="컬리판매가 자세히 보기" />
+                </span>
+            }
+            
             <div className="productDetailText">
                 로그인 후, 적립 혜택이 제공됩니다.
             </div>
@@ -140,7 +151,7 @@ export default function Product() {
                                     <button onClick={() => setCount(count+1)} className="countPlusButton" type="button"></button>
                                 </div>
                                 <div>
-                                    <span className="selectPrice">{(count * numPrice).toLocaleString('ko-KR')} 원</span>
+                                    <span className="selectPrice">{(count * price).toLocaleString('ko-KR')} 원</span>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +161,7 @@ export default function Product() {
                     <div>
                         <div className="totalPrice">
                             <span>총 상품 금액 :</span>
-                            <span>{(count * numPrice).toLocaleString('ko-KR')}</span>
+                            <span>{(count * price).toLocaleString('ko-KR')}</span>
                             <span>원</span>
                         </div>
                         <div className="accumulateInfo">
