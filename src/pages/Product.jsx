@@ -1,12 +1,13 @@
-/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-scroll';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { recentViewList } from '../recoil/RecentView';
 import styled from 'styled-components';
 import ButtonToTop from "../components/ButtonToTop";
 import ReviewList from "../components/ReviewList";
 import datas from '../db/data.json';
 import './product.css';
+import { useRecoilState } from "recoil";
 
 export default function Product() {
 
@@ -14,12 +15,15 @@ export default function Product() {
     const state = location.state;       // state는 전달 받은 객체
     const [product, setProduct] = useState({});     // product 객체 저장 
 
+    const[recoilProduct, setRecoilProduct] = useRecoilState(recentViewList);
+
     let price = Number((product.price||"").split(',').join(""));
     let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 
     useEffect(() => {
         setProduct(state);  
+        setRecoilProduct(state);
     },[]);  
 
     const [scrollY, setScrollY] = useState(0);

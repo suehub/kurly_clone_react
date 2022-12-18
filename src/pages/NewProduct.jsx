@@ -4,12 +4,9 @@ import filterCategory from '../db/data.json';
 import products from '../db/data.json'
 import './newProduct.css';
 import ButtonToTop from '../components/ButtonToTop';
-import { useNavigate } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 
 export default function NewProduct() {
-
-    const navigate = useNavigate();
 
     return (
         <Container>

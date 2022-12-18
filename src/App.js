@@ -14,6 +14,7 @@ import Benefit from './pages/Benefit';
 import ScrollToTop from './components/ScrollToTop';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
+import TopBanner from './components/TopBanner';
 
 function App() {
 
@@ -21,14 +22,7 @@ function App() {
     <>
         <BrowserRouter>
           <ScrollToTop/>
-            <div className='TopBanner'>
-                <div>
-                    <a href="">
-                        <div>지금 가입하고 인기상품 <b>100원</b>에 받아가세요!</div>
-                    </a>
-                    <button type="button"></button>
-                </div>
-            </div>
+            <TopBanner/>
             <Header/>
                 <Routes>
                   <Route path='/' element={ // 메인 페이지

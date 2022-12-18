@@ -74,6 +74,9 @@ const ImgWrapper = styled.div`
         object-fit: cover;
         transition: all 0.5s ease-in-out 0s;
     }
+    .img:hover{
+        transform: scale(1.02);
+    }
     .button{
         position: absolute;
         right: 16px;

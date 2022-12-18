@@ -55,37 +55,3 @@ button{
     font-family: 'Noto Sans', sans-serif;
     font-family: 'Noto Sans KR', sans-serif;
 }
-
-
-/* start */
-/* Top banner */
-.TopBanner{
-    height: 42px;
-    background: rgb(95, 0, 128);
-    border: none;
-    
-}
-.TopBanner > div{
-    width: 1050px;
-    height: 42px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-}
-.TopBanner > div > a{
-    font-size: 14px;
-    color: #fff;
-    margin: 0 auto;
-    line-height: 42px; 
-    height: 42px;
-}
-.TopBanner > div > button {
-    width: 42px;
-    height: 42px;
-    top: 0;
-    right: 0;
-    border: none;
-    background-position: 0 0;
-    background-size: 42px 42px;
-    background-image: url(https://res.kurly.com/pc/ico/1908/ico_close_fff_84x84.png);
-}
