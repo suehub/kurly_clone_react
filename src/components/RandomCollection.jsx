@@ -1,57 +1,61 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import datas from '../db/data.json';
 
 export default function RandomCollection() {
-  return (
-    <Container>
-        <div>
-            <a href="https://www.kurly.com/collections/adventcalendar">
-                <LeftDiv>
-                    <img src="https://product-image.kurly.com/cdn-cgi/image/width=1230,format=auto/main/random-collection/article/pc/img/18c22ceb-5028-4b36-b9c9-98376104f129.png" alt="상품 이미지" loading="lazy"/>
-                </LeftDiv>
-                <RightDiv>
-                    <strong>🎄 어드벤트 캘린더 OPEN</strong>
-                    <p >크리스마스를 특별하게 맞이하고 싶다면 "어드벤트 캘린더" 에 주목해보세요. 
-                        하루에 하나씩 선물을 꺼내보며 다가오는 크리스마스의 설렘을 배로 느낄 수 있답니다. 
-                        다양한 테마의 어드벤트 캘린더와 함께 다가올 크리스마스를 맞이해요!
-                    </p>
-                </RightDiv>
-            </a>
-            <ListWrapper>
-                <ul>
-                    {datas.randomLists.map((list) => (
-                        <li key={list.id} className='list' href={`/product/${list.id}`} >
-                            <a className='imgWrapper' href={`/product/${list.id}`} >
-                                <img src={list.url} alt="상품이미지" loading="lazy"/>
-                            </a>
-                            <a className='product' href={`/product/${list.id}`}>
-                                <p>{list.name}</p>
-                                <div>
-                                    <div className='discountPercent'>{list.discount}</div>
-                                    <span className='price'>
-                                        {list.price}
-                                        <span className='won'> 원</span>
-                                    </span>
-                                    
-                                </div>
-                            </a>
-                            <div>
-                                <CartButton type='button'>
-                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHZpZXdCb3g9IjAgMCA0NSA0NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMkEwMDM4IiBvcGFjaXR5PSIuNSIgY3g9IjIyLjUiIGN5PSIyMi41IiByPSIyMi41Ii8+CiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEuMDMgMTQuMzgpIiBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0ibTIwLjQ2IDIuOTEtMi4xNyA5LjIzSDUuODdMMy43MSAyLjkxeiIvPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS13aWR0aD0iMS4yIiBjeD0iMTYuMzUiIGN5PSIxNi44NiIgcj0iMS43Ii8+CiAgICAgICAgICAgIDxjaXJjbGUgc3Ryb2tlLXdpZHRoPSIxLjIiIGN4PSI3LjgyIiBjeT0iMTYuODYiIHI9IjEuNyIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0iTTAgMGgzLjAybDEuNDEgNS45OCIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="장바구니 아이콘"/>
-                                </CartButton>
-                            </div>
-                        </li>
-                    ))}                    
-                </ul>
-                <a className='viewAll' href="https://www.kurly.com/collections/adventcalendar">
-                    전체보기
+
+    const navigate = useNavigate();
+
+    return (
+        <Container>
+            <div>
+                <a href="https://www.kurly.com/collections/adventcalendar">
+                    <LeftDiv>
+                        <img src="https://product-image.kurly.com/cdn-cgi/image/width=1230,format=auto/main/random-collection/article/pc/img/18c22ceb-5028-4b36-b9c9-98376104f129.png" alt="상품 이미지" loading="lazy"/>
+                    </LeftDiv>
+                    <RightDiv>
+                        <strong>🎄 어드벤트 캘린더 OPEN</strong>
+                        <p >크리스마스를 특별하게 맞이하고 싶다면 "어드벤트 캘린더" 에 주목해보세요. 
+                            하루에 하나씩 선물을 꺼내보며 다가오는 크리스마스의 설렘을 배로 느낄 수 있답니다. 
+                            다양한 테마의 어드벤트 캘린더와 함께 다가올 크리스마스를 맞이해요!
+                        </p>
+                    </RightDiv>
                 </a>
-                <div></div>
-            </ListWrapper>
-        </div>
-    </Container>
-  )
+                <ListWrapper>
+                    <ul>
+                        {datas.randomLists.map((list) => (
+                            <li onClick={() => navigate(`/product/${list.id}`, {state: list})} key={list.id} className='list' href={`/product/${list.id}`} >
+                                <a className='imgWrapper' href={`/product/${list.id}`} >
+                                    <img src={list.url} alt="상품이미지" loading="lazy"/>
+                                </a>
+                                <a className='product' href={`/product/${list.id}`}>
+                                    <p>{list.name}</p>
+                                    <div>
+                                        <div className='discountPercent'>{list.discount}</div>
+                                        <span className='price'>
+                                            {list.price}
+                                            <span className='won'> 원</span>
+                                        </span>
+                                        
+                                    </div>
+                                </a>
+                                <div>
+                                    <CartButton type='button'>
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHZpZXdCb3g9IjAgMCA0NSA0NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMkEwMDM4IiBvcGFjaXR5PSIuNSIgY3g9IjIyLjUiIGN5PSIyMi41IiByPSIyMi41Ii8+CiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEuMDMgMTQuMzgpIiBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0ibTIwLjQ2IDIuOTEtMi4xNyA5LjIzSDUuODdMMy43MSAyLjkxeiIvPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS13aWR0aD0iMS4yIiBjeD0iMTYuMzUiIGN5PSIxNi44NiIgcj0iMS43Ii8+CiAgICAgICAgICAgIDxjaXJjbGUgc3Ryb2tlLXdpZHRoPSIxLjIiIGN4PSI3LjgyIiBjeT0iMTYuODYiIHI9IjEuNyIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0iTTAgMGgzLjAybDEuNDEgNS45OCIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="장바구니 아이콘"/>
+                                    </CartButton>
+                                </div>
+                            </li>
+                        ))}                    
+                    </ul>
+                    <a className='viewAll' href="https://www.kurly.com/collections/adventcalendar">
+                        전체보기
+                    </a>
+                    <div></div>
+                </ListWrapper>
+            </div>
+        </Container>
+    )
 }
 
 const Container = styled.div`

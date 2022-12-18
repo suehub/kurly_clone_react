@@ -4,8 +4,13 @@ import filterCategory from '../db/data.json';
 import products from '../db/data.json'
 import './newProduct.css';
 import ButtonToTop from '../components/ButtonToTop';
+import { useNavigate } from 'react-router-dom';
+import ProductCard from '../components/ProductCard';
 
 export default function TimeSales() {
+ 
+    const navigate = useNavigate();
+
     return (
         <Container>
             <div style={{"text-align": "center"}}>
@@ -198,35 +203,7 @@ export default function TimeSales() {
     
                     <div className='productGrid'>
                         {products.newProducts.map((product) => (
-                            <a key={product.id} href="">
-                                <div>
-                                    <div className='productImgWrapper'>
-                                        <img src={product.url} alt="상품 이미지" loading="lazy"/>
-                                        <div className="cartButton">
-                                        <button type="button">
-                                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHZpZXdCb3g9IjAgMCA0NSA0NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMkEwMDM4IiBvcGFjaXR5PSIuNSIgY3g9IjIyLjUiIGN5PSIyMi41IiByPSIyMi41Ii8+CiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEuMDMgMTQuMzgpIiBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0ibTIwLjQ2IDIuOTEtMi4xNyA5LjIzSDUuODdMMy43MSAyLjkxeiIvPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS13aWR0aD0iMS4yIiBjeD0iMTYuMzUiIGN5PSIxNi44NiIgcj0iMS43Ii8+CiAgICAgICAgICAgIDxjaXJjbGUgc3Ryb2tlLXdpZHRoPSIxLjIiIGN4PSI3LjgyIiBjeT0iMTYuODYiIHI9IjEuNyIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0iTTAgMGgzLjAybDEuNDEgNS45OCIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="장바구니 아이콘"/>
-                                        </button>
-                                    </div>
-                                    </div>
-                                    
-                                </div>
-                                <div style={{"padding": "14px 10px 0px 0px"}}>
-                                    <span style={{"display": "block", "padding-bottom": "2px"}}>
-                                        <span style={{"font-size":"14px", "color":"rgb(153,153,153", "line-height":"19px","letter-spacing":"-0.5px"}}>샛별배송</span>
-                                    </span>
-                                    <span className='productName'>{product.name}</span>
-                                    <div style={{"display":"flex","flex-direction":"row"}}>
-                                        { product.discount != "" &&<div className='discountPercent'>{product.discount}%</div>}
-                                        <span style={{"font-weight": "800","font-size":"16px","line-height":"24px","white-space":"nowrap"}}>
-                                            {product.price} <span className='won'> &nbsp;원</span>
-                                        </span>
-                                    </div>
-                                    <p className='productP'>{product.info}</p>
-                                    <div className='info'>
-                                        <span>Kurly Only</span>
-                                    </div>
-                                </div>
-                            </a>
+                            <ProductCard init={product}/>
                         ))}
                     </div>
     

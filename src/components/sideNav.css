@@ -37,12 +37,13 @@
 }
 .sideNavUl > a {
     color: inherit;
+    text-align: center;
     align-items: center;
 }
 .sideNavUl > a > div{
+    display: block;
     height: 29px;
-    padding-top: 5px;
-    text-align: center;
+    padding-top: 8px;
     border-bottom: 1px solid rgb(221, 221, 221);
 }
 .recentView{
