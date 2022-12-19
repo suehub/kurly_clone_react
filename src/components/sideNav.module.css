@@ -65,7 +65,7 @@
 }
 .recentViewLists{
     max-height: 209px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .recentViewLists > ul{
     position: relative;

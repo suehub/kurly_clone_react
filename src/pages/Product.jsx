@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-scroll';
 import { useLocation } from 'react-router-dom';
-import { recentViewList } from '../recoil/RecentView';
+import { recentViewProduct } from '../recoil/RecentView';
 import styled from 'styled-components';
 import ButtonToTop from "../components/ButtonToTop";
 import ReviewList from "../components/ReviewList";
@@ -15,16 +15,30 @@ export default function Product() {
     const state = location.state;       // state는 전달 받은 객체
     const [product, setProduct] = useState({});     // product 객체 저장 
 
-    const[recoilProduct, setRecoilProduct] = useRecoilState(recentViewList);
+    const[recentProductList, setRecentProductList] = useRecoilState(recentViewProduct); // recoil state
 
     let price = Number((product.price||"").split(',').join(""));
     let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
+    const addRecentProduct = () => {
+        setRecentProductList(recentProductList => [state, ...recentProductList]);
+        console.log(recentProductList);
+    };
+    // const filterArr = () => {
+    //     const arr = recentProductList;
+    //     const newArr = arr.filter((element, index) => arr.indexOf(element) === index);
+    //     console.log(arr);
+    //     console.log(newArr);
+    //     setRecentProductList(newArr);
+    // }
+
+    console.log(recentProductList);
 
     useEffect(() => {
         setProduct(state);  
-        setRecoilProduct(state);
-    },[]);  
+        addRecentProduct();
+        // filterArr();
+    }, [state]);  
 
     const [scrollY, setScrollY] = useState(0);
     const [scrollActive, setScrollActive] = useState(false);

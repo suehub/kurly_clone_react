@@ -32,7 +32,7 @@ export default function RandomCollection() {
                                 <a className='product' href={`/product/${list.id}`}>
                                     <p>{list.name}</p>
                                     <div>
-                                        <div className='discountPercent'>{list.discount}</div>
+                                        {list.discount && <div className='discountPercent'>{list.discount}%</div>}
                                         <span className='price'>
                                             {list.price}
                                             <span className='won'> 원</span>

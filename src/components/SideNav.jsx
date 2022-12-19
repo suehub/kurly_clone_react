@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import styles from './sideNav.module.css';
-import { recentViewList } from '../recoil/RecentView';
+import { recentViewProduct } from '../recoil/RecentView';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 export default function SideNav() {
 
-    const product = useRecoilState(recentViewList);
-    console.log(product);
-
+    const RecentProduct = useRecoilState(recentViewProduct);
+    const product = RecentProduct[0];
     const navigate = useNavigate();
+
+    console.log(product);
 
     useEffect(() => {
 
@@ -36,21 +36,13 @@ export default function SideNav() {
                     <strong>최근 본 상품</strong>
                     <div className={styles.recentViewLists}>
                         <ul>
-                            <li>
-                                <a onClick={() => navigate(`/product/${product[0].id}`, {state: product[0]})}>
-                                    <img src={product[0].url} alt="5115219"/>
-                                </a>
-                            </li>
-                            <li>
-                                <Link to="/product/5069882">
-                                    <img src="https://img-cf.kurly.com/cdn-cgi/image/width=60,format=auto/shop/data/goods/1653036301411l0.jpeg" alt="5069882"/>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/product/1000078041">
-                                    <img src="https://product-image.kurly.com/cdn-cgi/image/width=60,format=auto/product/image/bd77f676-4172-4863-828e-2946cbfd017a.jpg" alt="1000078041"/>
-                                </Link>
-                            </li>
+                            {product.map((p)=>(
+                                <li>
+                                    <a onClick={() => navigate(`/product/${p.id}`, {state: p})}>
+                                        <img src={p.url} alt={p.id}/>
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <button className={styles.recentViewButtonBottom}></button>
