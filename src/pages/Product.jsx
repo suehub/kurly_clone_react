@@ -21,24 +21,13 @@ export default function Product() {
     let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     const addRecentProduct = () => {
-        setRecentProductList(recentProductList => [state, ...recentProductList]);
-        console.log(recentProductList);
+        setRecentProductList(recentProductList => [state, ...recentProductList]);   // state 객체 recentProductList 배열에 추가
     };
-    // const filterArr = () => {
-    //     const arr = recentProductList;
-    //     const newArr = arr.filter((element, index) => arr.indexOf(element) === index);
-    //     console.log(arr);
-    //     console.log(newArr);
-    //     setRecentProductList(newArr);
-    // }
-
-    console.log(recentProductList);
 
     useEffect(() => {
         setProduct(state);  
         addRecentProduct();
-        // filterArr();
-    }, [state]);  
+    }, []);  
 
     const [scrollY, setScrollY] = useState(0);
     const [scrollActive, setScrollActive] = useState(false);

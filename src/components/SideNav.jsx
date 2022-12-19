@@ -7,14 +7,9 @@ import { useRecoilState } from 'recoil';
 export default function SideNav() {
 
     const RecentProduct = useRecoilState(recentViewProduct);
-    const product = RecentProduct[0];
+    const product = RecentProduct[0].filter((arr, index, callback) => index === callback.findIndex(t => t.id === arr.id));  // 중복 값 제거
+    
     const navigate = useNavigate();
-
-    console.log(product);
-
-    useEffect(() => {
-
-    }, [product]);
 
     return (
         <>
