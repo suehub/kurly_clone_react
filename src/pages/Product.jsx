@@ -8,6 +8,7 @@ import ReviewList from "../components/ReviewList";
 import datas from '../db/data.json';
 import './product.css';
 import { useRecoilState } from "recoil";
+import ProductDetail from "../components/ProductDetail";
 
 export default function Product() {
 
@@ -15,10 +16,8 @@ export default function Product() {
     const state = location.state;       // state는 전달 받은 객체
     const [product, setProduct] = useState({});     // product 객체 저장 
 
-    const[recentProductList, setRecentProductList] = useRecoilState(recentViewProduct); // recoil state
 
-    let price = Number((product.price||"").split(',').join(""));
-    let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const[recentProductList, setRecentProductList] = useRecoilState(recentViewProduct); // recoil state
 
     const addRecentProduct = () => {
         setRecentProductList(recentProductList => [state, ...recentProductList]);   // state 객체 recentProductList 배열에 추가
@@ -27,7 +26,7 @@ export default function Product() {
     useEffect(() => {
         setProduct(state);  
         addRecentProduct();
-    }, []);  
+    }, [state]);  
 
     const [scrollY, setScrollY] = useState(0);
     const [scrollActive, setScrollActive] = useState(false);
@@ -52,13 +51,11 @@ export default function Product() {
         };
     }, [scrollY, scrollActive]);
 
-    const [count, setCount] = useState(1);  // 상품 개수 
-
     return (
         <>
         <Main>
         {/* <!-- 상품 상세 --> */}
-        <main className="productDetail">
+        {/* <main className="productDetail">
         <div className="productDetailImg" style={{"background": `url(${product.url}) 0% 0% / cover`}}></div>
         <section className="productDetailSection">
             <div className="productDetailShipping">샛별배송</div>
@@ -196,7 +193,8 @@ export default function Product() {
                 </div>
             </div>
         </section>
-        </main>
+        </main> */}
+        <ProductDetail state = {product} />
             
         {/* <!-- 상품 디테일 nav --> */}
         <nav className="productDetailNav">
