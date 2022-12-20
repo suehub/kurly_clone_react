@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import ButtonToTop from '../components/ButtonToTop'
 import InstaReview from '../components/InstaReview'
 import LineBanner from '../components/LineBanner'
@@ -24,16 +25,20 @@ export default function Contents() {
     ];
 
     return (
-        <>
-        <MainBanner/>
-        <RecommandProduct/>
-        <LineBanner banner = {bannerData[0]}/>
-        <RandomCollection/>
-        <LineBanner banner = {bannerData[2]}/>
-        <RecommandProduct/>
-        <LineBanner banner = {bannerData[1]}/>
-        <InstaReview/>
-        <ButtonToTop/>
-        </>
+        <Container>
+            <MainBanner/>
+            <RecommandProduct/>
+            <LineBanner banner = {bannerData[0]}/>
+            <RandomCollection/>
+            <LineBanner banner = {bannerData[2]}/>
+            <RecommandProduct/>
+            <LineBanner banner = {bannerData[1]}/>
+            <InstaReview/>
+            <ButtonToTop/>
+        </Container>
     )
 }
+
+const Container = styled.div`
+    width: 100%;
+`;

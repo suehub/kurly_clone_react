@@ -15,6 +15,7 @@ import ScrollToTop from './components/ScrollToTop';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 import TopBanner from './components/TopBanner';
+import Cart from './pages/Cart';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
                   }/>
                   <Route path='/signup' element={<SignUp/>}></Route>
                   <Route path='/login' element={<LogIn/>}></Route>
+                  <Route path='/cart' element={<Cart/>}></Route>
                   <Route path='/product/:id' element={  // 상품 상세 페이지
                     <MainContent>
                         <SideNav/>
@@ -79,5 +81,6 @@ export default App;
 const MainContent = styled.div`
   position: relative; 
   margin: 0 auto 40px auto;
+  width: 100%;
 `;
 

@@ -1,4 +1,7 @@
 /* 헤더 */
+.HeaderWrapper{
+    width: 100%;
+}
 .Header{
     position: relative;
     width: 1050px;
@@ -368,4 +371,14 @@
 }
 .none{
     display: none;
+}
+
+@media screen and (max-width: 1024px){  /* Pad */
+    .HeaderWrapper{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 390px){   /* Phone */
+    
 }

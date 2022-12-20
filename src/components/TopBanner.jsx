@@ -44,4 +44,12 @@ const Conatiner = styled.div`
         background-size: 42px 42px;
         background-image: url(https://res.kurly.com/pc/ico/1908/ico_close_fff_84x84.png);
     }
+
+    @media screen and (max-width: 1024px){  /* Pad */
+
+    }
+
+    @media screen and (max-width: 390px){   /* Phone */
+        
+    }
 `;

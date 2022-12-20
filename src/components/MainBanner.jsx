@@ -22,7 +22,6 @@ export default function MainBanner() {
 
     
   return (
-    <div>
       <div className={styles.mainBanner}>
         <div className={styles.bannerDiv}>
           <StyledSlider className={styles.SliderDiv} {...settings}>
@@ -40,7 +39,6 @@ export default function MainBanner() {
           </div>
         </div>
       </div>
-     </div>
   );
 }
 
@@ -50,17 +48,6 @@ const StyledSlider = styled(Slider)`
   opacity: 0;
   display: none;
 }
-`;
-
-const PrevWrapper = styled.div`
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  right: 50%;
-  margin: auto 590px auto 0px;
-  z-index: 100;
-  width: 52px;
-  height: 52px;
 `;
 
 const PrevButton = styled.div`
