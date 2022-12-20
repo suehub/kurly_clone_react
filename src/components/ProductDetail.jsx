@@ -8,8 +8,6 @@ export default function ProductDetail(props) {
     let price = Number((product.price||"").split(',').join(""));
     let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-    console.log(product);
-
     return (
         <main className="productDetail">
             <div className="productDetailImg" style={{"background": `url(${product.url}) 0% 0% / cover`}}></div>

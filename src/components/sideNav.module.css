@@ -47,16 +47,11 @@
     border-bottom: 1px solid rgb(221, 221, 221);
 }
 .recentView{
+    height: 250px;
     margin-top: 8px;
     border: 1px solid rgb(221, 221, 221);
     background-color: rgb(255, 255, 255);
     text-align: center;
-}
-.recentViewButtonTop{
-    border: none;
-    width: 100%;
-    height: 9px;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAkCAYAAACTz/ouAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAGKADAAQAAAABAAAAJAAAAACG5CAqAAAA+0lEQVRIDe2T3Q2CMBRGqTCAiQOQ8GqiD26gLuASOhO7qBv4oAOQMIAJCxC4H3JJrZRe45u5TaD89J7TfmmjSJsmoAloAprA7wkYKaIoihWNzfvxpyzLHpJakYDga4JdmqZZAGqMeVK3I8kd71MtKHDhDJNKJgUunKAVBLSSOXqJxCsYg8dxvAe4ruuzVDIq8MHTNL1BUJblRir5EITgEKBJJW8CKfylkEkGAcGxz6/WVqyQOcfCULf3rGTL52RmFeTfwlGLCWAi1g7DWeEDGdmCzoWBkpl3g/ubK7H/DQICH+g6JkmyDMViA/gZNagFAyz+rr0moAn8QwItYEKeRjHvH60AAAAASUVORK5CYII=) 50% 50% / 12px 18px no-repeat;
 }
 .recentView > strong{
     display: block;
@@ -65,7 +60,7 @@
 }
 .recentViewLists{
     max-height: 209px;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 .recentViewLists > ul{
     position: relative;
@@ -74,25 +69,4 @@
     flex-direction: column;
     align-items: center;
     transition: top 0.2s ease 0s;
-}
-.recentViewLists > ul > li{
-    padding: 1px 0px 2px;
-}
-.recentViewLists > ul > li > a{
-    display: block;
-    width: 60px;
-    height: 80px;
-    padding: 1px 0px 2px;
-}
-.recentViewLists > ul > li > a > img{
-    min-width: 100%;
-    height: 80px;
-    object-fit: contain;
-    background-color: rgb(245, 245, 245);
-}
-.recentViewButtonBottom{
-    border: none;
-    width: 100%;
-    height: 9px;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAkCAYAAACTz/ouAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAGKADAAQAAAABAAAAJAAAAACG5CAqAAABMElEQVRIDe2SPWrDQBCF9XcAQxqTS4QQ0AWcLrj0GYSEjiP040u4CAEX8RFU2JAbhJAUgdRCP5m37AjLUawxpAnsFhpp9s332LeyLLNMAiaB/5+AzUeIomjetu3S87ynJEneuH9JjeP4uq7rB8dxHtM0fcesw4CmaTZksK6q6iUMwzvuSytmMAsGWDzXG3CD6owEz5eYQIsZzB5x1GtvQMcKbNv+1AKxySkcDLDYqL8DNIIguKGy67ruSgu+XNe9z7Ks1N+DMgYnwaIoij0LBwZoSk0kcPB+GEhMpPBfDc6ZYO/4QvW9DWKBhtfoCXhzLC69p/6WKTi0Zw0gGDFB25LAlU6pJx6nJlI4sO4EW22XZfnh+/6WPm4J/kr/+SrP84Nk1mhMAiYBk4BJ4C8S+AZhpakd4+ESBgAAAABJRU5ErkJggg==) 50% 50% / 12px 18px no-repeat;
 }
