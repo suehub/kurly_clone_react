@@ -25,14 +25,14 @@ export default function RecommandProduct() {
               }
             },
             {
-              breakpoint: 600,
+              breakpoint: 820,
               settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
+                slidesToShow: 3,
+                slidesToScroll: 3,
               }
             },
             {
-              breakpoint: 480,
+              breakpoint: 390,
               settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1
@@ -70,6 +70,13 @@ const Container = styled.div`
         margin: 0px auto;
         padding: 40px 0px;
     }
+    
+    @media screen and (max-width: 820px){  /* Pad */
+        width: 100%
+        > div{ 
+            width: 100%;
+        }
+    }
 `;
 const Title = styled.div`
     margin-bottom: 27px;
@@ -87,6 +94,10 @@ const Title = styled.div`
         font-size: 28px;
         line-height: 1.15;
         font-weight: 500;
+    }
+     @media screen and (max-width: 820px){  /* Pad */
+        width: 90vw;
+        margin-left: 10vw;
     }
 `;
 
@@ -118,7 +129,10 @@ const ProductLists = styled.div`
     .img a > img:hover{
         transform: scale(1.02);
     }
-    
+    @media screen and (max-width: 820px){  /* Pad */
+        width: 90vw;
+        margin-left: 5vw;
+    }
 `;
 
 const StyledSlider = styled(Slider)`

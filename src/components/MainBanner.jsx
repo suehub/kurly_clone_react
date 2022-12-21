@@ -43,11 +43,11 @@ export default function MainBanner() {
 }
 
 const StyledSlider = styled(Slider)`
-.slick-prev::before,
-.slick-next::before {
-  opacity: 0;
-  display: none;
-}
+  .slick-prev::before,
+  .slick-next::before {
+    opacity: 0;
+    display: none;
+  }
 `;
 
 const PrevButton = styled.div`

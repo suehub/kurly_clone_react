@@ -13,7 +13,30 @@ export default function InstaReview() {
         slidesToScroll: 6,
         arrows: true,
         prevArrow: (<PrevButton/>),
-        nextArrow: (<NextButton/>)
+        nextArrow: (<NextButton/>),
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 5,
+                slidesToScroll: 5,
+              }
+            },
+            {
+              breakpoint: 820,
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4,
+              }
+            },
+            {
+              breakpoint: 390,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+              }
+            }
+          ]
     }
 
     return (
@@ -74,6 +97,12 @@ const Container = styled.div`
     color: rgb(51, 51, 51);
     font-weight: 500;
     }
+    @media screen and (max-width: 820px){  /* Pad */
+        width: 820px;
+        > div{ 
+            width: 100%;
+        }
+    }
 `;
 const Title = styled.div`
     margin-bottom: 27px;
@@ -129,15 +158,23 @@ const Review = styled.div`
         object-fit: cover;
         aspect-ratio: 1 / 1;
     }
+    @media screen and (max-width: 820px){  /* Pad */
+        width: 820px;
+        > div{ 
+            width: 90%;
+            margin: 0 auto;
+        }
+    }
 `;
 
 const StyledSlider = styled(Slider)`
-.slick-prev::before,
-.slick-next::before {
-  opacity: 0;
-  display: none;
-}
+    .slick-prev::before,
+    .slick-next::before {
+        opacity: 0;
+        display: none;
+    }
 `;
+
 const PrevButton = styled.div`
     position: absolute;
     z-index: 100;

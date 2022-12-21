@@ -153,3 +153,18 @@
     padding-top: 7px;
     font-style: normal;
 }
+
+@media screen and (max-width: 820px){  /* Pad */
+    .footerWrapper{
+        width: 820px;
+    }
+    .footerInner1{
+        flex-direction: column;
+    }
+    .footerInner1Left, .footerInner1Right{
+        margin: 5vw;
+    }
+    .footerInner2 > button{
+        flex-wrap: wrap;
+    }
+}

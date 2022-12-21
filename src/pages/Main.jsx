@@ -40,5 +40,7 @@ export default function Contents() {
 }
 
 const Container = styled.div`
-    width: 100%;
-`;
+@media screen and (max-width: 820px){  /* Pad */
+    width: 820px;
+}
+`

@@ -10,7 +10,7 @@ export default function RandomCollection() {
     return (
         <Container>
             <div>
-                <a href="https://www.kurly.com/collections/adventcalendar">
+                <a className='main' href="https://www.kurly.com/collections/adventcalendar">
                     <LeftDiv>
                         <img src="https://product-image.kurly.com/cdn-cgi/image/width=1230,format=auto/main/random-collection/article/pc/img/18c22ceb-5028-4b36-b9c9-98376104f129.png" alt="상품 이미지" loading="lazy"/>
                     </LeftDiv>
@@ -69,6 +69,17 @@ const Container = styled.div`
         display: flex;
         padding-top: 40px;
     }
+    @media screen and (max-width: 820px){  /* Pad */
+        max-width: 820px;
+        > div{
+            width: 100%;
+            margin: 0;
+        }
+        .main{
+            flex-direction: column;
+            width: 820px;
+        }
+    }
 `;
 const LeftDiv = styled.div`
     overflow: hidden;
@@ -84,6 +95,15 @@ const LeftDiv = styled.div`
     }
     > img:hover{
         transform: scale(1.02);
+    }
+    @media screen and (max-width: 820px){  /* Pad */
+        width: 820px;
+        height: 430px;
+        text-align: center;
+        img{
+            width: 70%;
+            height: 70%;
+        }
     }
 `;
 const RightDiv = styled.div`
@@ -104,6 +124,17 @@ const RightDiv = styled.div`
         word-break: break-all;
         white-space: normal;
     }
+    @media screen and (max-width: 820px){  /* Pad */
+        width: 820px;
+        > strong {
+            width: 820px;
+            text-align: center;
+        }
+        > p {
+            margin: 0 30px;
+        }
+    }
+        
 `;
 const ListWrapper = styled.div`
     padding: 12px 0 20px;
@@ -189,6 +220,16 @@ const ListWrapper = styled.div`
         width: 20px;
         height: 20px;
         background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyMHYyMEgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJtOCAxNSA1LTQuODg2TDguMTczIDUiLz4KICAgIDwvZz4KPC9zdmc+Cg==) 50% 50% no-repeat;
+    }
+    @media screen and (max-width: 820px){  /* Pad */
+        width: 820px;
+        > ul{ 
+            width: 90%;
+            margin: 0 auto;
+        }
+        li{
+            margin: 0 auto;
+        }
     }
 `;
 

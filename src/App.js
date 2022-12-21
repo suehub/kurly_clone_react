@@ -82,5 +82,8 @@ const MainContent = styled.div`
   position: relative; 
   margin: 0 auto 40px auto;
   width: 100%;
+  @media screen and (max-width: 820px){  /* Pad */
+    max-width: 820px;
+  }
 `;
 

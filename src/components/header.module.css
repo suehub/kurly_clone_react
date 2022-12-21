@@ -177,6 +177,7 @@
     cursor: pointer;
 }
 
+
 /* 헤더 nav 부분 */
 .navWrapper{
     position: relative;
@@ -257,7 +258,7 @@
 
 
 .navWrapperScroll{
-    min-width: 1050px;
+    width: 100%;
     letter-spacing: -0.3px;
     background-color: rgb(255, 255, 255);
     box-shadow: rgb(0 0 0 / 7%) 0px 3px 4px 0px;
@@ -373,12 +374,105 @@
     display: none;
 }
 
-@media screen and (max-width: 1024px){  /* Pad */
+@media screen and (max-width: 820px){  /* Pad */
     .HeaderWrapper{
         width: 100%;
+    }
+    .Header{
+        width: 100%;
+    }
+    .Header1{
+        font-size: 0.8em;
+    }
+    .Header2{
+        width: 100%;
+    }
+    .Header2Inner1{
+        padding-left: 5px;
+        width: 30%;
+    }
+    .Header2Inner1 > img{
+        width: 4.5em;
+        height: 100%;
+    }
+    .Header2Inner1 button {
+        width: 33%;
+        font-size: 1.1em;
+    }
+    .Header2Inner1Button2::after {
+        top: 0;
+        right: -45px;
+    }
+    .Header2Inner2 > div{
+        width: 28%;
+        left: 27%;
+    }
+    .Header2Inner2 > div > input{
+        width: 90%;
+        font-size: 0.9em;
+    }
+    .Header2Inner3{
+        width: 28%;
+        float: right;
+    }
+    .Header2Inner3 > div{
+        right: 0;
+    }
+    .navWrapper{
+        min-width: 820px;
+    }
+    .nav{
+        width: 90%;
+    }
+    .navCategory{
+        flex-shrink: 1;
+    }
+    .navUl{
+        flex: left;
+    }
+    .navUl li{
+        width: 120px;
+    }
+    .navCircle{
+        /* display: none; */
+    }
+    .navWrapperScroll{
+        width: 820px;
+    }
+    .navScroll{
+        width: 90%;
+    }
+    .HeaderScrollInput{
+        display: none;
+    }
+    .HeaderIcon > div{
+        left: auto;
+        right: 5px;
+    }
+    .navUlScroll{
+        margin-left: 0;
+    }
+    .navUlScroll li{
+        width: 100px;
+    }
+    .navUlScroll > li span{
+        font-size: 14px;
     }
 }
 
 @media screen and (max-width: 390px){   /* Phone */
-    
+    .HeaderWrapper{
+        width: 100%;
+    }
+    .Header{
+        width: 100%;
+    }
+    .Header1{
+        font-size: 0.8em;
+        position: relative;
+        padding: 0px 20px;
+    }
+    .Header2Inner2{
+        display: none;
+    }
 }

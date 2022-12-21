@@ -36,7 +36,7 @@ export default function Header() {
 
   return (
         // header
-        <div className={styles.HeaderWrapper}>
+        <Container className={styles.HeaderWrapper}>
             <div className={styles.Header}>
                 <div className={styles.Header1}> 
                     <Link to={"/signup"} className={styles.HeaderJoin}>회원가입</Link>
@@ -157,9 +157,18 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-        </div>
+        </Container>
   )
 }
+
+const Container = styled.div`
+    @media screen and (max-width: 820px){  /* Pad */
+        max-width: 820px;
+        > div{
+            width: 100%;
+        }
+    }
+`;
 
 const HoverColor = styled.div`
     button:hover, span:hover{

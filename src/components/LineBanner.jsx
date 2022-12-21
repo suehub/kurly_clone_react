@@ -31,4 +31,15 @@ const Container = styled.div`
         height: 100%;
         object-fit: cover;
     }
+    @media screen and (max-width: 820px){  /* Pad */
+        width: 100%;
+        div{
+            width: 820px;
+        }
+        > div > a > img{
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+        }
+    }
 `;

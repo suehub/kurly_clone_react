@@ -5,11 +5,11 @@ import styled from 'styled-components';
 export default function TopBanner() {
   return (
         <Conatiner>
-            <div>
+            <div className='wrapper'>
                 <Link to="/login">
-                    <div>지금 가입하고 인기상품 <b>100원</b>에 받아가세요!</div>
+                    <div className='text'>지금 가입하고 인기상품 <b>100원</b>에 받아가세요!</div>
                 </Link>
-                <button type="button"></button>
+                <button className='button' type="button"></button>
             </div>
         </Conatiner>  
     )
@@ -19,7 +19,7 @@ const Conatiner = styled.div`
     position: relative;
     text-align: center;
     transition: margin 0.4s linear 0s;
-    min-width: 1050px;
+    // min-width: 1050px;
     border-bottom: 0px;
     background: rgb(95, 0, 128);
     > div{
@@ -45,11 +45,26 @@ const Conatiner = styled.div`
         background-image: url(https://res.kurly.com/pc/ico/1908/ico_close_fff_84x84.png);
     }
 
-    @media screen and (max-width: 1024px){  /* Pad */
-
+    @media screen and (max-width: 820px){   /* pad */
+        .wrapper{
+            width: 100%;
+        }
+        .text{
+            font-size: 0.8em;
+        }
     }
 
     @media screen and (max-width: 390px){   /* Phone */
+    .wrapper{
+        width: 100%;
+    }
+     .text{
+        font-size: 0.8em;
+     }
+     .button{
+        width: 30px;
+        height: 30px;
         
+     }
     }
 `;
