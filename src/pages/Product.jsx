@@ -17,7 +17,7 @@ export default function Product() {
     const [product, setProduct] = useState({});     // product 객체 저장 
 
 
-    const[recentProductList, setRecentProductList] = useRecoilState(recentViewProduct); // recoil state
+    const[recentProductList, setRecentProductList] = useRecoilState(recentViewProduct);  // recoil state
 
     const addRecentProduct = () => {
         setRecentProductList(recentProductList => [state, ...recentProductList]);   // state 객체 recentProductList 배열에 추가

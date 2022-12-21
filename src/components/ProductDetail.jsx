@@ -1,13 +1,21 @@
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
+import { CartLists } from '../recoil/CartList';
 
-export default function ProductDetail(props) {
+export default function ProductDetail(props) {  
 
     const [count, setCount] = useState(1);  // 상품 개수 
     const product = props.state;
-
     let price = Number((product.price||"").split(',').join(""));
     let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
+    const[cart, setCart] = useRecoilState(CartLists);  // recoil state
+
+    const addCartList = () => {
+        setCart(cart => [product, ...cart]);   // state 객체 CartList 배열에 추가
+    };
+
+    
     return (
         <main className="productDetail">
             <div className="productDetailImg" style={{"background": `url(${product.url}) 0% 0% / cover`}}></div>
@@ -140,7 +148,7 @@ export default function ProductDetail(props) {
                             </span>
                         </button>
                         <div className="ProductAddCart">
-                            <button type="button">
+                            <button onClick={addCartList} type="button">
                                 <span>장바구니 담기</span>
                             </button>
                         </div>

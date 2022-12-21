@@ -146,7 +146,7 @@ export default function Header() {
                             <WishIconHover>
                                 <button className={styles.HeaderWishIcon}></button>
                             </WishIconHover>
-                            <div className={styles.HeaderCartIcon}>
+                            <div onClick={() => navigate(`/cart`)} className={styles.HeaderCartIcon}>
                                 <div>
                                     <CartIconHover>
                                         <button></button>

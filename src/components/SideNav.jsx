@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './sideNav.module.css';
 import { recentViewProduct } from '../recoil/RecentView';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import Slider from "react-slick";
 import styled from 'styled-components';
 
@@ -19,8 +19,8 @@ export default function SideNav() {
         // nextArrow: <NextButton/>
         };
 
-    const RecentProduct = useRecoilState(recentViewProduct);
-    const product = RecentProduct[0].filter((arr, index, callback) => index === callback.findIndex(p => p.id === arr.id));  // 중복 값 제거
+    const RecentProduct = useRecoilValue(recentViewProduct);
+    const product = RecentProduct.filter((arr, index, callback) => index === callback.findIndex(p => p.id === arr.id));  // 중복 값 제거
 
     const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ export default function SideNav() {
                         <ul>
                             <StyledSlider {...settings}>
                                     {product.map((p)=>(
-                                        <li>
+                                        <li key={p.id}>
                                             <a onClick={() => navigate(`/product/${p.id}`, {state: p})}>
                                                 <img src={p.url} alt={p.id}/>
                                             </a>

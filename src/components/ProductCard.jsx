@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from "recoil";
 import styled from 'styled-components';
+import { CartLists } from '../recoil/CartList';
 
 export default function ProductCard(props) {
 
@@ -8,21 +10,26 @@ export default function ProductCard(props) {
 
     const [product, setProduct] = useState({});
 
+    const[cart, setCart] = useRecoilState(CartLists);  // recoil state
+
+    const addCartList = () => {
+        setCart(cart => [product, ...cart]);   // state 객체 CartList 배열에 추가
+    };
+
     useEffect(() => {
         setProduct(props.init);
     }, []);
-
     
     let price = Number((product.price||"").split(',').join(""));
     let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     return (
-        <Conatiner onClick = {() => navigate(`/product/${product.id}`, {state: product})}>
+        <Conatiner>
             <ImgWrapper>
                 <div>
-                    <img className="img" src={product.url} alt="상품이미지" />
+                    <img onClick = {() => navigate(`/product/${product.id}`, {state: product})} className="img" src={product.url} alt="상품이미지" />
                     <div>
-                        <button className='button'>
+                        <button onClick={addCartList} className='button'>
                             <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHZpZXdCb3g9IjAgMCA0NSA0NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMkEwMDM4IiBvcGFjaXR5PSIuNSIgY3g9IjIyLjUiIGN5PSIyMi41IiByPSIyMi41Ii8+CiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEuMDMgMTQuMzgpIiBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0ibTIwLjQ2IDIuOTEtMi4xNyA5LjIzSDUuODdMMy43MSAyLjkxeiIvPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS13aWR0aD0iMS4yIiBjeD0iMTYuMzUiIGN5PSIxNi44NiIgcj0iMS43Ii8+CiAgICAgICAgICAgIDxjaXJjbGUgc3Ryb2tlLXdpZHRoPSIxLjIiIGN4PSI3LjgyIiBjeT0iMTYuODYiIHI9IjEuNyIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0iTTAgMGgzLjAybDEuNDEgNS45OCIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="장바구니 아이콘" />
                         </button>
                     </div>

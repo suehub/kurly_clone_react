@@ -1,42 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { CartLists } from '../recoil/CartList';
 
 export default function Cart() {
 
+    const carts = useRecoilValue(CartLists);
+    const product = carts.filter((arr, index, callback) => index === callback.findIndex(p => p.id === arr.id));  // 중복 값 제거
+
     const [count, setCount] = useState(1);  // 상품 개수 
+
+    product.map((p) => {
+        console.log(p.name);
+    })
 
     // let price = Number((product.price||"").split(',').join(""));
     // let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-    const product = [{
-        "id": 5115219,
-        "name": "[마켓컬리 X 울워스] 오트 브란",
-        "info": "귀리의 영양을 그대로 담은 이색 오트밀",
-        "price": "6,500",
-        "discount" : "",
-        "delivery": "샛별배송",
-        "seller" : "컬리",
-        "packaging": "상온",
-        "unit": "1팩",
-        "weight": "500g",
-        "origin": "상세페이지 별도표기",
-        "url": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1650430833824l0.jpg"
-      },
-      {
-        "id": 5056795,
-        "name": "미니 파프리카 200g",
-        "info": "아담하고 알록달록한",
-        "price": "3,710",
-        "discount" : "",
-        "delivery": "샛별배송",
-        "seller" : "컬리",
-        "packaging": "냉장",
-        "unit": "1봉",
-        "weight": "300g 내외",
-        "origin": "국산",
-        "url": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/165303830429l0.jpeg"
-      }];
-
 
     return (
         <Conatiner>
@@ -49,7 +28,7 @@ export default function Cart() {
                             <Label>
                                 <input type="checkbox" />
                                 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" />
-                                <span>전체선택 (4/4)</span>
+                                <span>전체선택 ({product.length}/{product.length})</span>
                             </Label>
                             <span></span>
                             <button>선택삭제</button>
@@ -69,19 +48,19 @@ export default function Cart() {
                                 </button>
                             </h4>
                             <ul>
-                                {/* {product.map((p) => { */}
-                                    <CartList key={product[0].id}>
+                                {product.map((p) => {
+                                    <CartProduct key={p.id}>
                                         <Label>
                                             <input type="checkbox" />
                                             <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" />
                                             <span></span>
                                         </Label>
                                         <a>
-                                            <span style={{"background-image": `url(${product[0].url})`}}></span>
+                                            <span style={{"background-image": `url(${p.url})`}}></span>
                                         </a>
                                         <div className='name'>
                                             <a>
-                                                <p>{product[0].name}</p>
+                                                <p>{p.name}</p>
                                             </a>
                                             <div></div>
                                         </div>
@@ -91,42 +70,14 @@ export default function Cart() {
                                             <button onClick={() => setCount(count+1)} type="button"></button>
                                         </div>
                                         <div className='price'>
-                                            <span>{product[0].price}원</span>
-                                            <span>{product[0].price}원</span>
+                                            <span>{p.price}원</span>
+                                            <span>{p.price}원</span>
                                         </div>
                                         <button className='button'>
                                             <span></span>
                                         </button>
-                                    </CartList>
-                                    <CartList key={product[1].id}>
-                                        <Label>
-                                            <input type="checkbox" />
-                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" />
-                                            <span></span>
-                                        </Label>
-                                        <a>
-                                            <span style={{"background-image": `url(${product[1].url})`}}></span>
-                                        </a>
-                                        <div className='name'>
-                                            <a>
-                                                <p>{product[1].name}</p>
-                                            </a>
-                                            <div></div>
-                                        </div>
-                                        <div className='count'>
-                                            <button onClick={() =>( count < 1) ? setCount(count) : setCount(count-1)} type="button"></button>
-                                            <div className="count countNumber">{count}</div>
-                                            <button onClick={() => setCount(count+1)} type="button"></button>
-                                        </div>
-                                        <div className='price'>
-                                            <span>{product[1].price}원</span>
-                                            <span>{product[1].price}원</span>
-                                        </div>
-                                        <button className='button'>
-                                            <span></span>
-                                        </button>
-                                    </CartList>
-                                {/* })} */}
+                                    </CartProduct>
+                                })}
                             </ul>
                             <h4>
                                 <span>
@@ -139,66 +90,7 @@ export default function Cart() {
                                     <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iN2EwMnFxZzNqYSIgZD0iTTExIDEyaDl2OSIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMCAwaDMwdjMwSDB6Ii8+CiAgICAgICAgPHVzZSBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1IDE1LjUgMTYuNSkiIHhsaW5rOmhyZWY9IiM3YTAycXFnM2phIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="접기" />
                                 </button>
                             </h4>
-                            <ul>
-                                {/* {product.map((p) => { */}
-                                    <CartList key={product[0].id}>
-                                        <Label>
-                                            <input type="checkbox" />
-                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" />
-                                            <span></span>
-                                        </Label>
-                                        <a>
-                                            <span style={{"background-image": `url(${product[0].url})`}}></span>
-                                        </a>
-                                        <div className='name'>
-                                            <a>
-                                                <p>{product[0].name}</p>
-                                            </a>
-                                            <div></div>
-                                        </div>
-                                        <div className='count'>
-                                            <button onClick={() =>( count < 1) ? setCount(count) : setCount(count-1)} type="button"></button>
-                                            <div className="count countNumber">{count}</div>
-                                            <button onClick={() => setCount(count+1)} type="button"></button>
-                                        </div>
-                                        <div className='price'>
-                                            <span>{product[0].price}원</span>
-                                            <span>{product[0].price}원</span>
-                                        </div>
-                                        <button className='button'>
-                                            <span></span>
-                                        </button>
-                                    </CartList>
-                                    <CartList key={product[1].id}>
-                                        <Label>
-                                            <input type="checkbox" />
-                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" />
-                                            <span></span>
-                                        </Label>
-                                        <a>
-                                            <span style={{"background-image": `url(${product[1].url})`}}></span>
-                                        </a>
-                                        <div className='name'>
-                                            <a>
-                                                <p>{product[1].name}</p>
-                                            </a>
-                                            <div></div>
-                                        </div>
-                                        <div className='count'>
-                                            <button onClick={() =>( count < 1) ? setCount(count) : setCount(count-1)} type="button"></button>
-                                            <div className="count countNumber">{count}</div>
-                                            <button onClick={() => setCount(count+1)} type="button"></button>
-                                        </div>
-                                        <div className='price'>
-                                            <span>{product[1].price}원</span>
-                                            <span>{product[1].price}원</span>
-                                        </div>
-                                        <button className='button'>
-                                            <span></span>
-                                        </button>
-                                    </CartList>
-                                {/* })} */}
-                            </ul>
+                            <ul></ul>
                             <h4>
                                 <span>
                                     <span>
@@ -210,66 +102,7 @@ export default function Cart() {
                                     <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iN2EwMnFxZzNqYSIgZD0iTTExIDEyaDl2OSIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMCAwaDMwdjMwSDB6Ii8+CiAgICAgICAgPHVzZSBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1IDE1LjUgMTYuNSkiIHhsaW5rOmhyZWY9IiM3YTAycXFnM2phIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="접기" />
                                 </button>
                             </h4>
-                            <ul>
-                                {/* {product.map((p) => { */}
-                                    <CartList key={product[0].id}>
-                                        <Label>
-                                            <input type="checkbox" />
-                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" />
-                                            <span></span>
-                                        </Label>
-                                        <a>
-                                            <span style={{"background-image": `url(${product[0].url})`}}></span>
-                                        </a>
-                                        <div className='name'>
-                                            <a>
-                                                <p>{product[0].name}</p>
-                                            </a>
-                                            <div></div>
-                                        </div>
-                                        <div className='count'>
-                                            <button onClick={() =>( count < 1) ? setCount(count) : setCount(count-1)} type="button"></button>
-                                            <div className="count countNumber">{count}</div>
-                                            <button onClick={() => setCount(count+1)} type="button"></button>
-                                        </div>
-                                        <div className='price'>
-                                            <span>{product[0].price}원</span>
-                                            <span>{product[0].price}원</span>
-                                        </div>
-                                        <button className='button'>
-                                            <span></span>
-                                        </button>
-                                    </CartList>
-                                    <CartList key={product[1].id}>
-                                        <Label>
-                                            <input type="checkbox" />
-                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" />
-                                            <span></span>
-                                        </Label>
-                                        <a>
-                                            <span style={{"background-image": `url(${product[1].url})`}}></span>
-                                        </a>
-                                        <div className='name'>
-                                            <a>
-                                                <p>{product[1].name}</p>
-                                            </a>
-                                            <div></div>
-                                        </div>
-                                        <div className='count'>
-                                            <button onClick={() =>( count < 1) ? setCount(count) : setCount(count-1)} type="button"></button>
-                                            <div className="count countNumber">{count}</div>
-                                            <button onClick={() => setCount(count+1)} type="button"></button>
-                                        </div>
-                                        <div className='price'>
-                                            <span>{product[1].price}원</span>
-                                            <span>{product[1].price}원</span>
-                                        </div>
-                                        <button className='button'>
-                                            <span></span>
-                                        </button>
-                                    </CartList>
-                                {/* })} */}
-                            </ul>
+                            <ul></ul>
                         </div>
                     </div>
                     <div className='select'>
@@ -277,7 +110,7 @@ export default function Cart() {
                             <Label>
                                 <input type="checkbox" />
                                 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" />
-                                <span>전체선택 (4/4)</span>
+                                <span>전체선택 ({product.length}/{product.length})</span>
                             </Label>
                             <span></span>
                             <button>선택삭제</button>
@@ -342,7 +175,7 @@ export default function Cart() {
                             <ul>
                                 <li>쿠폰/적립금은 주문서에서 사용 가능합니다</li>
                                 <li>[주문완료] 상태일 경우에만 주문 취소 가능합니다.</li>
-                                <li>[마이컬리 > 주문내역 상세페이지] 에서 직접 취소하실 수 있습니다.</li>
+                                <li>[마이컬리 - 주문내역 상세페이지] 에서 직접 취소하실 수 있습니다.</li>
                                 <li>쿠폰, 적립금 사용 금액을 제외한 실 결제 금액 기준으로 최종 산정됩니다.</li>
                                 <li>상품별로 적립금 지급 기준이 다를 수 있습니다. (상품 상세 페이지에서 확인 가능합니다)</li>
                             </ul>
@@ -471,7 +304,7 @@ const Label = styled.label`
     }
 `;
 
-const CartList = styled.li`
+const CartProduct = styled.li`
     display: flex;
     align-items: center;
     position: relative;
