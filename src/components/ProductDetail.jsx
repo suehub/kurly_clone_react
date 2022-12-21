@@ -5,7 +5,9 @@ import { CartLists } from '../recoil/CartList';
 export default function ProductDetail(props) {  
 
     const [count, setCount] = useState(1);  // 상품 개수 
+
     const product = props.state;
+    
     let price = Number((product.price||"").split(',').join(""));
     let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 

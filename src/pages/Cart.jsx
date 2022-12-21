@@ -10,6 +10,7 @@ export default function Cart() {
 
     const [count, setCount] = useState(1);  // 상품 개수 
 
+    console.log(product);
     product.map((p) => {
         console.log(p.name);
     })
