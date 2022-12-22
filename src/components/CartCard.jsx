@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-export default function CartProduct(props) {
+export default function CartCard(props) {
 
-    const product = props.state;
-
-    console.log(product);
-
+    const [product, setProduct] = useState({});
     const [count, setCount] = useState(1);  // 상품 개수 
+
+    // let price = Number((product.price||"").split(',').join(""));
+    // let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    console.log(count);
+
+    useEffect(() => {
+        setProduct(props.init);
+    }, []);
 
     return (
         <Conatiner key={product.id}>

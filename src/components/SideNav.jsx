@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './sideNav.module.css';
 import { recentViewProduct } from '../recoil/RecentView';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import Slider from "react-slick";
 import styled from 'styled-components';
 

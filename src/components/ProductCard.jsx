@@ -13,7 +13,7 @@ export default function ProductCard(props) {
     const[cart, setCart] = useRecoilState(CartLists);  // recoil state
 
     const addCartList = () => {
-        setCart(cart => [product, ...cart]);   // state 객체 CartList 배열에 추가
+        setCart(cart => [product, ...cart]);   // 객체 CartLists 배열에 추가
     };
 
     useEffect(() => {

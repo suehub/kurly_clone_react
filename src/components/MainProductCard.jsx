@@ -10,7 +10,6 @@ export default function MainProductCard(props) {
 
     useEffect(() => {
         setProduct(props.init);
-        // console.log(product.name);
     }, []);
 
     
