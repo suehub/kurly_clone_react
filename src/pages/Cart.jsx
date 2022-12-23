@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import CartCard from '../components/CartCard';
@@ -9,7 +9,7 @@ export default function Cart() {
     const carts = useRecoilValue(CartLists);
     const product = carts.filter((arr, index, callback) => index === callback.findIndex(p => p.id === arr.id));  // 중복 값 제거
 
-    // console.log(product);
+    console.log(product);
     
     product.map((p) => {
         console.log(p.name);

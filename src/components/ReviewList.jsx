@@ -8,43 +8,52 @@ export default function ReviewList({review}) {
 
     const onLikeButton = () => {
 
-        if(isLike){
-            fetch(`http://localhost:3001/reviewArticles/${review.id}`, {
-            method: 'PUT', // 수정
-            headers : {
-                'Content-Type' : 'application/json'  // 보내는 리소스 타입
-            },
-            body: JSON.stringify({
-                ...review,
-                like: like-1,
-                isLike: !isLike
-            }),
-        }).then(res => {
-            if(res.ok) {
-                setLike(like-1);
-                setIsLike(!isLike);
-            }
-        });
-        } else{
-            fetch(`http://localhost:3001/reviewArticles/${review.id}`, {
-                method: 'PUT', // 수정
-                headers : {
-                    'Content-Type' : 'application/json'  // 보내는 리소스 타입
-                },
-                body: JSON.stringify({
-                    ...review,
-                    like: like+1,
-                    isLike: !isLike
-
-                }),
-            }).then(res => {
-                if(res.ok) {
-                    setLike(like+1);
-                    setIsLike(!isLike);
-                }
-            });
+        if(isLike) {
+            setLike(like - 1);
+            setIsLike(!isLike);
+            return;
+        }
+        else{
+            setLike(like+1);
+            setIsLike(!isLike);
         }
 
+        // if(isLike){
+        //     fetch(`http://localhost:3001/reviewArticles/${review.id}`, {
+        //     method: 'PUT', // 수정
+        //     headers : {
+        //         'Content-Type' : 'application/json'  // 보내는 리소스 타입
+        //     },
+        //     body: JSON.stringify({
+        //         ...review,
+        //         like: like-1,
+        //         isLike: !isLike
+        //     }),
+        // }).then(res => {
+        //     if(res.ok) {
+        //         setLike(like-1);
+        //         setIsLike(!isLike);
+        //     }
+        // });
+        // } else{
+        //     fetch(`http://localhost:3001/reviewArticles/${review.id}`, {
+        //         method: 'PUT', // 수정
+        //         headers : {
+        //             'Content-Type' : 'application/json'  // 보내는 리소스 타입
+        //         },
+        //         body: JSON.stringify({
+        //             ...review,
+        //             like: like+1,
+        //             isLike: !isLike
+
+        //         }),
+        //     }).then(res => {
+        //         if(res.ok) {
+        //             setLike(like+1);
+        //             setIsLike(!isLike);
+        //         }
+        //     });
+        // }
        
     }
     

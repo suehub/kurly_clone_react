@@ -394,6 +394,7 @@
     .Header2Inner1 > img{
         width: 4.5em;
         height: 100%;
+        cursor: pointer;
     }
     .Header2Inner1 button {
         width: 33%;

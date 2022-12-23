@@ -9,7 +9,7 @@ export default function CartCard(props) {
     // let price = Number((product.price||"").split(',').join(""));
     // let totalPrice = (price * (100-product.discount) * 0.01).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-    console.log(count);
+    console.log(product);
 
     useEffect(() => {
         setProduct(props.init);
