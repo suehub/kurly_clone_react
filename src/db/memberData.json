@@ -1,0 +1,17 @@
+{
+    "memberData": 
+    [
+        {
+            "id": "sue123",
+            "pw": "1234",
+            "name": "sue",
+            "email": "sue@kurly.com",
+            "tel": "01012345678"
+        }
+    ],
+    "userData": 
+        {
+            "id": "",
+            "pw": ""
+        }
+}

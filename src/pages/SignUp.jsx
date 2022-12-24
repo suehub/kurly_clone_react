@@ -1,19 +1,56 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styles from './signUp.module.css';
 
 export default function SignUp() {
 
-    const [tel, setTel] = useState();
+    const [memberDatas, setMemberDatas] = useState([]);
+
+    const [id, setId] = useState("");
+    const [pw, setPw] = useState("");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [tel, setTel] = useState("");
     const [isTel, setIsTel] = useState(false);
 
-    const onInput = (e) => {
+    useEffect(() => {
+        getMemberData();
+    }, []);
+
+    const isTelButton = (e) => {
         setTel(e.target.value);
         if(e.target.value){
             setIsTel(true);
             return;
         } 
         setIsTel(false);
-        console.log(tel);
+    }
+
+    const getMemberData = async () => {
+        const result = await axios({
+            method: "GET",
+            url: "/signup"
+          })
+          console.log(result.data.memberData);
+          setMemberDatas(result.data.memberData);  
+    }
+
+    const OnClickaddMember = async () => {
+        const result = await axios({
+            method: "POST",
+            url: "/signup",
+            data: {
+                "id": id,
+                "pw": pw,
+                "name": name,
+                "email": email,
+                "tel": tel
+                
+            }
+        })
+        if(result.status === 200) {
+            await getMemberData();
+        }
     }
 
     return (
@@ -35,7 +72,7 @@ export default function SignUp() {
                         <div className={styles.input}>
                             <div>
                                 <div>
-                                    <input className={styles.input} placeholder="아이디를 입력해주세요" type="text" required/>
+                                    <input value={id} onChange={(e) => setId(e.target.value)} className={styles.input} placeholder="아이디를 입력해주세요" type="text"/>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +92,7 @@ export default function SignUp() {
                         <div className={styles.input}>
                             <div>
                                 <div>
-                                    <input className={styles.input} placeholder="비밀번호를 입력해주세요" type="password" required />
+                                    <input value={pw} onChange={(e) => setPw(e.target.value)} className={styles.input} placeholder="비밀번호를 입력해주세요" type="password" />
                                 </div>
                             </div>
                         </div>
@@ -71,7 +108,7 @@ export default function SignUp() {
                         <div className={styles.input}>
                             <div>
                                 <div>
-                                    <input className={styles.input} placeholder="비밀번호를 한번 더 입력해주세요" type="password" required />
+                                    <input className={styles.input} placeholder="비밀번호를 한번 더 입력해주세요" type="password" />
                                 </div>
                             </div>
                         </div>
@@ -87,7 +124,7 @@ export default function SignUp() {
                         <div className={styles.input}>
                             <div>
                                 <div>
-                                    <input className={styles.input} placeholder="이름을 입력해주세요" type="text" required />
+                                    <input value={name} onChange={(e) => setName(e.target.value)} className={styles.input} placeholder="이름을 입력해주세요" type="text" />
                                 </div>
                             </div>
                         </div>
@@ -103,7 +140,7 @@ export default function SignUp() {
                         <div className={styles.input}>
                             <div>
                                 <div>
-                                    <input className={styles.input} placeholder="예: marketkurly@kurly.com" type="text" required />
+                                    <input value={email} onChange={(e) => setEmail(e.target.value)} className={styles.input} placeholder="예: marketkurly@kurly.com" type="text" />
                                 </div>
                             </div>
                         </div>
@@ -123,7 +160,7 @@ export default function SignUp() {
                         <div className={styles.input}>
                             <div>
                                 <div>
-                                    <input onChange={onInput} className={styles.input} placeholder="숫자만 입력해주세요" type="tel" required value={tel || ""}/>
+                                    <input value={tel} onChange={isTelButton} className={styles.input} placeholder="숫자만 입력해주세요" type="tel"/>
                                 </div>
                             </div>
                         </div>
@@ -318,11 +355,11 @@ export default function SignUp() {
                     </div>
                 </div>
                 <div className={styles.join}>
-                    <button type='submit'>
+                    <button onClick={OnClickaddMember} type='submit'>
                         <span>가입하기</span>
                     </button>
                 </div>
-
+                
             </div>
         </div>
     )

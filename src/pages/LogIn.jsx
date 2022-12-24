@@ -1,7 +1,41 @@
-import React from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import { RecoilBridge } from "recoil";
 
 export default function LogIn() {
+
+  const [user, setUser] = useState({});
+  const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  const getUserData = async () => {
+    const result = await axios({
+        method: "GET",
+        url: "/signup"
+      })
+      setUser(result.data.userData);  
+}
+
+  const OnClickSetUser = async () => {
+    const result = await axios({
+        method: "POST",
+        url: "/login",
+        data: {
+            "id": id,
+            "pw": pw           
+        }
+    })
+    if(result.status === 200) {
+        await getUserData();
+    }
+}
+
   return (
     <Container>
         <div className='title'>로그인</div>
@@ -10,12 +44,12 @@ export default function LogIn() {
             <InputBox>
               <div>
                 <div>
-                  <input type="text" placeholder='아이디를 입력해주세요'/>
+                  <input value={id} onChange={(e) => setId(e.target.value)} type="text" placeholder='아이디를 입력해주세요'/>
                 </div>
               </div>
               <div>
                 <div>
-                  <input type="text" placeholder='비밀번호를 입력해주세요'/>
+                  <input value={pw} onChange={(e) => setPw(e.target.value)} type="password" placeholder='비밀번호를 입력해주세요'/>
                 </div>
               </div>
             </InputBox>
@@ -25,11 +59,14 @@ export default function LogIn() {
               <a href=""> 비밀번호 찾기</a>
             </Search>
             <ButtonBox>
-              <Button primary>
+              <Button className="kakao" inputColor="rgb(95, 0, 128)">
                 <span>로그인</span>
               </Button>
+              <Button inputColor="#ffe812">
+                <span>카카오 로그인</span>
+              </Button>
               <Button>
-                <span>회원가입</span>
+                <span><Link to='/signup'>회원가입</Link></span>
               </Button>
             </ButtonBox>
           </form>
@@ -112,13 +149,13 @@ const ButtonBox = styled.div`
 const Button = styled.button`
   display: block;
   padding: 0px 10px;
-  margin-top: ${props => props.primary ? "0px" : "10px"};
+  margin-top: 10px;
   text-align: center;
   overflow: hidden;
   width: 100%;
   height: 54px;
   border-radius: 3px;
-  color: ${props => props.primary ? "rgb(255, 255, 255)" : "rgb(95, 0, 128)"};
-  background-color: ${props => props.primary ? "rgb(95, 0, 128)" : "rgb(255, 255, 255)"};
-  border: ${props => props.primary ? "0px none" : "1px solid rgb(95, 0, 128)"};
-`;
+  border: ${props => props.inputColor ? "0px none" : "1px solid rgb(95, 0, 128)"};
+  color: ${props => props.inputColor ? "rgb(255, 255, 255)" : "rgb(95, 0, 128)"};
+  background-color: ${props => props.inputColor || "rgb(255, 255, 255)"};
+  `;
