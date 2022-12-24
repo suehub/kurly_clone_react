@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import datas from "../db/data.json";
 import styles from './MainBanner.module.css';
 import styled from 'styled-components';
+import axios from 'axios';
 
 export default function MainBanner() {
+
+  const [bannerData, setBannerData] = useState([]);
   const [slideCount, setSlideCount] = useState(1);
+
+  useEffect(() => {
+    getBannerData();
+  }, []);
+
+  const getBannerData = async () => {
+    const result = await axios({
+      method: "GET",
+      url: "/"
+    })
+    
+    // console.log(result.data);
+    setBannerData(result.data.bannerImgs);
+  }
   
   const settings = {
       dots: false,
@@ -25,7 +41,7 @@ export default function MainBanner() {
       <div className={styles.mainBanner}>
         <div className={styles.bannerDiv}>
           <StyledSlider className={styles.SliderDiv} {...settings}>
-            {datas.bannerImgs.map((banner) => (
+            {bannerData.map((banner) => (
               <div className={styles.slider}>
               <a key={banner.id}>
                 <img src={banner.url} alt={banner.id} className={styles.mainBannerImg}/>

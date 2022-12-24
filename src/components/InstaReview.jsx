@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
-import datas from '../db/data.json';
+import axios from 'axios';
 
 export default function InstaReview() {
+
+    const [reviewImgData, setReviewImgData] = useState([]);
+
+    useEffect(() => {
+        getImgData();
+      }, []);
+    
+    
+    const getImgData = async () => {
+        const result = await axios({
+            method: "GET",
+            url: "/"
+        })
+                
+        setReviewImgData(result.data.instaReviews);   
+    }
 
     const settings = {
         dots: false,
@@ -51,7 +67,7 @@ export default function InstaReview() {
                 <Review>
                     <div>
                         <StyledSlider {...settings}>
-                            {datas.instaReviews.map((review) => (
+                            {reviewImgData.map((review) => (
                                 <div className='slider'>
                                     <a key={review.id} href=''>
                                     <img src={review.url} alt='인스타그램 리뷰 사진' />

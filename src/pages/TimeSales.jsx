@@ -1,12 +1,28 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import filterCategory from '../db/data.json';
-import products from '../db/data.json'
 import './newProduct.css';
 import ButtonToTop from '../components/ButtonToTop';
 import ProductCard from '../components/ProductCard';
+import axios from 'axios';
 
 export default function TimeSales() {
+
+    const [productDatas, setProductDatas] = useState([]);
+    const [filterDatas, setFilterDatas] = useState([]);
+
+    useEffect(() => {
+        getProductDatas();
+      }, []);
+    
+      const getProductDatas = async () => {
+        const result = await axios({
+          method: "GET",
+          url: "/"
+        })
+        
+        setProductDatas(result.data.newProducts);  
+        setFilterDatas(result.data.filterCategories);
+      }
  
     return (
         <Container>
@@ -40,7 +56,7 @@ export default function TimeSales() {
                                 </svg>
                             </FilterName>
                             <FilterUl>
-                                {filterCategory.filterCategories.map((product) => (
+                                {filterDatas.map((product) => (
                                     <FilterLi key={product.id}>
                                         <a href={product.url} style={{ "display": "flex", "align-items": "center"}}>
                                             <button style={{"border-radius" : 0, "cursor": "pointer", "align-items": "center", "margin-right": "8px"}}>
@@ -70,7 +86,7 @@ export default function TimeSales() {
                                 </svg>
                             </FilterName>
                             <FilterUl>
-                                {filterCategory.filterCategories.map((product) => (
+                                {filterDatas.map((product) => (
                                     <FilterLi key={product.id}>
                                         <a href={product.url} style={{ "display": "flex", "align-items": "center"}}>
                                             <button style={{"border-radius" : 0, "cursor": "pointer", "align-items": "center", "margin-right": "8px"}}>
@@ -100,7 +116,7 @@ export default function TimeSales() {
                                 </svg>
                             </FilterName>
                             <FilterUl>
-                                {filterCategory.filterCategories.map((product) => (
+                                {filterDatas.map((product) => (
                                     <FilterLi key={product.id}>
                                         <a href={product.url} style={{ "display": "flex", "align-items": "center"}}>
                                             <button style={{"border-radius" : 0, "cursor": "pointer", "align-items": "center", "margin-right": "8px"}}>
@@ -124,7 +140,7 @@ export default function TimeSales() {
                                 </svg>
                             </FilterName>
                             <FilterUl>
-                                {filterCategory.filterCategories.map((product) => (
+                                {filterDatas.map((product) => (
                                     <FilterLi key={product.id}>
                                         <a href={product.url} style={{ "display": "flex", "align-items": "center"}}>
                                             <button style={{"border-radius" : 0, "cursor": "pointer", "align-items": "center", "margin-right": "8px"}}>
@@ -148,7 +164,7 @@ export default function TimeSales() {
                                 </svg>
                             </FilterName>
                             <FilterUl>
-                                {filterCategory.filterCategories.map((product) => (
+                                {filterDatas.map((product) => (
                                     <FilterLi key={product.id}>
                                         <a href={product.url} style={{ "display": "flex", "align-items": "center"}}>
                                             <button style={{"border-radius" : 0, "cursor": "pointer", "align-items": "center", "margin-right": "8px"}}>
@@ -199,7 +215,7 @@ export default function TimeSales() {
                     </div>
     
                     <div className='productGrid'>
-                        {products.newProducts.map((product) => (
+                        {productDatas.map((product) => (
                             <ProductCard init={product}/>
                         ))}
                     </div>

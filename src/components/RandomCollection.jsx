@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import datas from '../db/data.json';
+import axios from 'axios';
 
 export default function RandomCollection() {
 
+    const [productData, setProductData] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        getProductData();
+      }, []);
+    
+      const getProductData = async () => {
+        const result = await axios({
+          method: "GET",
+          url: "/"
+        })
+        
+        // console.log(result.data);
+        
+        setProductData(result.data.randomLists);
+        
+      }
 
     return (
         <Container>
@@ -24,7 +41,7 @@ export default function RandomCollection() {
                 </a>
                 <ListWrapper>
                     <ul>
-                        {datas.randomLists.map((list) => (
+                        {productData.map((list) => (
                             <li onClick={() => navigate(`/product/${list.id}`, {state: list})} key={list.id} className='list' href={`/product/${list.id}`} >
                                 <a className='imgWrapper' href={`/product/${list.id}`} >
                                     <img src={list.url} alt="상품이미지" loading="lazy"/>

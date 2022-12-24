@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
-import products from '../db/products.json';
 import MainProductCard from './MainProductCard';
+import axios from 'axios';
 
 export default function RecommandProduct() {
 
+    const [productData, setProductData] = useState([]);
+
+    useEffect(() => {
+        getProductData();
+      }, []);
+    
+      const getProductData = async () => {
+        const result = await axios({
+          method: "GET",
+          url: "/"
+        })
+        
+        // console.log(result.data);
+        
+        setProductData(result.data.products);
+        
+      }
 
     const settings = {
         dots: false,
@@ -52,7 +69,7 @@ export default function RecommandProduct() {
                 <ProductLists>
                     <div className="SliderWrapper">
                         <StyledSlider {...settings}> 
-                            {products.map(product => (
+                            {productData.map(product => (
                                 <MainProductCard init={product} />
                             ))}
                         </StyledSlider>
