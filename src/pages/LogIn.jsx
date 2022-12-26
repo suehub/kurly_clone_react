@@ -2,17 +2,50 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import img from '../img/kakao_login_large_wide.png';
+import kakaoimg from '../img/kakao_login_large_wide.png';
+import KakaoLogin from "react-kakao-login";
 
-export default function LogIn() {
+export default function LogIn() {  
+
+  const initKakao = () => {
+    const jsKey = "a82090e04e746f2440d7dcbac68a2c01";
+    const Kakao = window.Kakao;
+    if(Kakao && !Kakao.isInitialized()) {
+      Kakao.init(jsKey);
+      console.log(Kakao.isInitialized());
+    }
+  };
+
+  useEffect(() => {
+    initKakao();
+    // getUserData();
+  }, []);
 
   const [user, setUser] = useState({});
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
-  useEffect(() => {
-    getUserData();
-  }, []);
+  const token = "a82090e04e746f2440d7dcbac68a2c01";
+
+  const kakao_Login = () => {
+    window.Kakao.Auth.login({
+        scope: 'profile_nickname, account_email, gender, birthday', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+        success: function(response) {
+            console.log(response) // 로그인 성공하면 받아오는 데이터
+            window.Kakao.API.request({ // 사용자 정보 가져오기 
+                url: '/v2/user/me',
+                success: (res) => {
+                    const kakao_account = res.kakao_account;
+                    console.log(kakao_account)
+                }
+            });
+            // window.location.href='/login' //리다이렉트 되는 코드
+        },
+        fail: function(error) {
+            console.log(error);
+        }
+    });
+}
 
   const getUserData = async () => {
     const result = await axios({
@@ -59,9 +92,27 @@ export default function LogIn() {
               <a href=""> 비밀번호 찾기</a>
             </Search>
             <ButtonBox>
-              <Kakao>
-                <img src={img} />
-              </Kakao>
+              <KakaoLogin className="kakao"
+                token={token}
+                onSuccess={console.log}
+                onFail={console.error}
+                onLogout={console.info}
+                useLoginForm
+                style={{"display": "block",
+                  "padding": "0px 10px 0px 0px",
+                  "margin-bottom": "7px",
+                  "overflow": "hidden",
+                  "width": "100%",
+                  "height": "54px",
+                  "background-color": "#FEE500",
+                  "border-radius": "12px"}}>
+                  <img src={kakaoimg} 
+                    style={{"width": "100%",
+                      "padding-top": "3px"}}/>
+              </KakaoLogin>
+              {/* <KakaoButton onClick={kakao_Login}>
+                <img src={kakaoimg} />
+              </KakaoButton> */}
               <Button primary>
                 <span>로그인</span>
               </Button>
@@ -160,7 +211,7 @@ const Button = styled.button`
   background-color: ${props => props.primary ? "rgb(95, 0, 128)" : "rgb(255, 255, 255)"};
 `;
 
-const Kakao = styled.button`
+const KakaoButton = styled.a`
   display: block;
   padding: 0px 10px 0px 0px;
   margin-bottom: 7px;
