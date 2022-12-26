@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import { RecoilBridge } from "recoil";
+import img from '../img/kakao_login_large_wide.png';
 
 export default function LogIn() {
 
@@ -59,11 +59,11 @@ export default function LogIn() {
               <a href=""> 비밀번호 찾기</a>
             </Search>
             <ButtonBox>
-              <Button className="kakao" inputColor="rgb(95, 0, 128)">
+              <Kakao>
+                <img src={img} />
+              </Kakao>
+              <Button primary>
                 <span>로그인</span>
-              </Button>
-              <Button inputColor="#ffe812">
-                <span>카카오 로그인</span>
               </Button>
               <Button>
                 <span><Link to='/signup'>회원가입</Link></span>
@@ -149,13 +149,28 @@ const ButtonBox = styled.div`
 const Button = styled.button`
   display: block;
   padding: 0px 10px;
-  margin-top: 10px;
+  margin-top: ${props => props.primary ? "0px" : "7px"};
   text-align: center;
   overflow: hidden;
   width: 100%;
   height: 54px;
-  border-radius: 3px;
-  border: ${props => props.inputColor ? "0px none" : "1px solid rgb(95, 0, 128)"};
-  color: ${props => props.inputColor ? "rgb(255, 255, 255)" : "rgb(95, 0, 128)"};
-  background-color: ${props => props.inputColor || "rgb(255, 255, 255)"};
-  `;
+  border-radius: 12px;
+  border: ${props => props.primary ? "0px none" : "1px solid rgb(95, 0, 128)"};
+  color: ${props => props.primary ? "rgb(255, 255, 255)" : "rgb(95, 0, 128)"};
+  background-color: ${props => props.primary ? "rgb(95, 0, 128)" : "rgb(255, 255, 255)"};
+`;
+
+const Kakao = styled.button`
+  display: block;
+  padding: 0px 10px 0px 0px;
+  margin-bottom: 7px;
+  overflow: hidden;
+  width: 100%;
+  height: 54px;
+  background-color:  #FEE500;
+  border-radius: 12px;
+  > img{
+    width: 100%;
+    padding-top: 3px;
+  }
+`;
