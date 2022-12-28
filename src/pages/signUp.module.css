@@ -70,6 +70,11 @@
     outline: none;
     box-sizing: border-box;
 }
+.input > p{
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 14px;
+}
 .button{
     width: 120px;
     margin-left: 8px;

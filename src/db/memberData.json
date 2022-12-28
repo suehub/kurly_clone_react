@@ -7,6 +7,13 @@
             "name": "sue",
             "email": "sue@kurly.com",
             "tel": "01012345678"
+        },
+        {
+            "id": "sususu11",
+            "pw": "5678",
+            "name": "yeonsue",
+            "email": "sususu11@kurly.com",
+            "tel": "01056781234"
         }
     ],
     "userData": 

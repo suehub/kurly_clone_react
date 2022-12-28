@@ -460,6 +460,32 @@
         font-size: 14px;
     }
 }
+.log{
+    display: inline-block;
+    min-width: 38px;
+    height: 16px;
+    margin-right: 4px;
+    padding: 0px 4px;
+    border-radius: 30px;
+    font-size: 10px;
+    line-height: 14px;
+    text-align: center;
+    letter-spacing: -0.3px;
+    vertical-align: 0px;
+    color: rgb(95, 0, 128);
+    border: 1px solid rgb(95, 0, 128);
+    background-color: white;
+}
+.arrow{
+    width: 8px;
+    height: 5px;
+    background-image: url(https://res.kurly.com/pc/ico/1908/ico_down_16x10.png);
+    background-size: cover;
+    background-position: center center;
+    display: inline-block;
+    margin-left: 5px;
+    margin-bottom: 1px;
+}
 
 @media screen and (max-width: 390px){   /* Phone */
     .HeaderWrapper{

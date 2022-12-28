@@ -14,6 +14,7 @@ export default function ProductCard(props) {
 
     const addCartList = () => {
         setCart(cart => [product, ...cart]);   // 객체 CartLists 배열에 추가
+        alert('장바구니에 추가');
     };
 
     useEffect(() => {

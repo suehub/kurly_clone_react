@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 import styles from './header.module.css';
 import styled from 'styled-components';
 import '../global';
+import { useRecoilState } from "recoil";
+import { LogState } from "../recoil/LogState";
 
 export default function Header() {
+
+    const [isLogin, setIsLogIn] = useRecoilState(LogState);
 
     const navigate = useNavigate();
 
@@ -39,10 +43,27 @@ export default function Header() {
         <Container className={styles.HeaderWrapper}>
             <div className={styles.Header}>
                 <div className={styles.Header1}> 
-                    <Link to={"/signup"} className={styles.HeaderJoin}>회원가입</Link>
-                    <div className={styles.HeaderLine}></div>
-                    <Link to={"./login"}>로그인</Link>
-                    <div className={styles.HeaderLine}></div>
+                    {isLogin 
+                    ? 
+                    <>
+                        <div style={{"line-height":"35px","position":"relative", "margin-right":"3px"}}>
+                            <a style={{"display":"block","cursor":"pointer","vertical-align":"middle"}}>
+                                <span>
+                                    <span className={styles.log}>일반</span>
+                                    이연수 님
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 14 14" data-testid="new-icon"><g fill="none" fill-rule="evenodd"><rect width="14" height="14" fill="#FA622F" rx="7"></rect><polyline stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" points="4.5 10 4.5 4.5 9.5 10 9.5 4.5"></polyline></g></svg>
+                                </span>
+                                <span className={styles.arrow}></span>
+                            </a>
+                        </div>
+                    </> 
+                    : <>
+                        <Link to={"/signup"} className={styles.HeaderJoin}>회원가입</Link>
+                        <div className={styles.HeaderLine}></div>
+                        <Link to={"./login"}>로그인</Link>
+                        <div className={styles.HeaderLine}></div>
+                    </>}
+                    
                     <div className={styles.HeaderCustomerCenter}>
                         <a>고객센터</a>
                         <span></span>

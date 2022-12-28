@@ -1,21 +1,29 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from './signUp.module.css';
 
 export default function SignUp() {
 
+    const navigate = useNavigate();
+
     const [memberDatas, setMemberDatas] = useState([]);
 
+
     const [id, setId] = useState("");
+    const [usableId, setUsableId] = useState(false);
     const [pw, setPw] = useState("");
+    const [pwToConfirm, setPwToConfirm] = useState("")
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [usableEmail, setUsableEmail] = useState(false);
     const [tel, setTel] = useState("");
     const [isTel, setIsTel] = useState(false);
+    const [isSignup, setIsSignUp] = useState(false);
 
     useEffect(() => {
         getMemberData();
-    }, []);
+    }, [isSignup]);
 
     const isTelButton = (e) => {
         setTel(e.target.value);
@@ -24,7 +32,7 @@ export default function SignUp() {
             return;
         } 
         setIsTel(false);
-    }
+    };
 
     const getMemberData = async () => {
         const result = await axios({
@@ -33,9 +41,42 @@ export default function SignUp() {
           })
           console.log(result.data.memberData);
           setMemberDatas(result.data.memberData);  
+    };
+
+    const idCheck = async (e) => {   // id 중복 확인
+        e.preventDefault();
+
+        for(let i=0; i<memberDatas.length; i++){
+            if(id === memberDatas[i].id){
+                alert('사용 불가능한 아이디 입니다');
+                setUsableId(true);
+                setId('');
+                return; 
+            } else{
+                alert('사용 가능한 아이디 입니다');
+                setUsableId(false);
+            }
+        }
     }
 
-    const OnClickaddMember = async () => {
+    const emailCheck = async (e) => {   // id 중복 확인
+        e.preventDefault();
+        
+        for(let i=0; i<memberDatas.length; i++){
+            if(email === memberDatas[i].email){
+                alert('사용 불가능한 이메일 입니다');
+                setUsableEmail(true);
+                setEmail('');
+                return; 
+            } else{
+                alert('사용 가능한 이메일 입니다');
+                setUsableEmail(false);
+            }
+        }
+    }
+
+    const addMember = async (e) => {
+
         const result = await axios({
             method: "POST",
             url: "/signup",
@@ -51,12 +92,37 @@ export default function SignUp() {
         if(result.status === 200) {
             await getMemberData();
         }
+    };
+    
+    const onClickAddMember = (e) => {
+        e.preventDefault();
+        if(pw !== pwToConfirm){
+            alert('비밀번호를 다시 확인해주세요');
+        } else if(id === ''){
+            alert('아이디는 필수항목입니다');
+        } 
+        else{
+            addMember();   
+            setIsSignUp(true);
+            alert('회원가입 완료');
+            console.log(memberDatas);
+            // setId('');
+            // setPw('');
+            // setPwToConfirm('');
+            // setName('');
+            // setEmail('');
+            // setTel('');
+            // setIsTel(false);
+            navigate('/');
+        }
     }
+
+
 
     return (
         <div className={styles.container}>
             <div className={styles.title}>회원가입</div>
-            <div className={styles.box}>
+            <form className={styles.box}>
                 <div className={styles.line}>
                     <span className={styles.star}>*</span>
                     필수입력사항
@@ -77,7 +143,7 @@ export default function SignUp() {
                             </div>
                         </div>
                         <div className={styles.button}>
-                            <button>
+                            <button onClick={idCheck}>
                                 <span>중복확인</span>
                             </button>
                         </div>
@@ -108,9 +174,10 @@ export default function SignUp() {
                         <div className={styles.input}>
                             <div>
                                 <div>
-                                    <input className={styles.input} placeholder="비밀번호를 한번 더 입력해주세요" type="password" />
+                                    <input value={pwToConfirm} onChange={(e) => setPwToConfirm(e.target.value)} className={styles.input} placeholder="비밀번호를 한번 더 입력해주세요" type="password" />
                                 </div>
                             </div>
+                            {pw && (pw === pwToConfirm) ? <p>비밀번호 일치</p> : <p style={{"color":"rgb(240, 63, 64)"}}>비밀번호 불일치</p>}
                         </div>
                         <div className={styles.button}></div>
                     </div>
@@ -145,7 +212,7 @@ export default function SignUp() {
                             </div>
                         </div>
                         <div className={styles.button}>
-                            <button>
+                            <button onClick={emailCheck}>
                                 <span>중복확인</span>
                             </button>
                         </div>
@@ -355,12 +422,12 @@ export default function SignUp() {
                     </div>
                 </div>
                 <div className={styles.join}>
-                    <button onClick={OnClickaddMember} type='submit'>
+                    <button onClick={onClickAddMember} type='submit'>
                         <span>가입하기</span>
                     </button>
                 </div>
                 
-            </div>
+            </form>
         </div>
     )
 }

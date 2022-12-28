@@ -1,71 +1,106 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import kakaoimg from '../img/kakao_login_large_wide.png';
 import KakaoLogin from "react-kakao-login";
+import { useRecoilState } from "recoil";
+import { LogState } from "../recoil/LogState";
 
 export default function LogIn() {  
 
-  const initKakao = () => {
-    const jsKey = "a82090e04e746f2440d7dcbac68a2c01";
+  const navigate = useNavigate();
+
+  const [isLogin, setIsLogIn] = useRecoilState(LogState);
+
+  const initKakao = () => {   // JavaScript SDK 초기화 
+    const jsKey = "a82090e04e746f2440d7dcbac68a2c01";   // JavaScript 키
     const Kakao = window.Kakao;
     if(Kakao && !Kakao.isInitialized()) {
-      Kakao.init(jsKey);
-      console.log(Kakao.isInitialized());
+      Kakao.init(jsKey);    // Javascript SDK를 앱 키로 초기화
+      console.log(Kakao.isInitialized());   // 초기화가 잘 되었는지 boolean 데이터를 반환
     }
   };
 
   useEffect(() => {
     initKakao();
-    // getUserData();
+    getUserData();
   }, []);
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([]);
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const [login, setLogin] = useState(false);
 
   const token = "a82090e04e746f2440d7dcbac68a2c01";
 
-  const kakao_Login = () => {
-    window.Kakao.Auth.login({
-        scope: 'profile_nickname, account_email, gender, birthday', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
-        success: function(response) {
-            console.log(response) // 로그인 성공하면 받아오는 데이터
-            window.Kakao.API.request({ // 사용자 정보 가져오기 
-                url: '/v2/user/me',
-                success: (res) => {
-                    const kakao_account = res.kakao_account;
-                    console.log(kakao_account)
-                }
-            });
-            // window.location.href='/login' //리다이렉트 되는 코드
-        },
-        fail: function(error) {
-            console.log(error);
-        }
-    });
-}
+//   const kakao_Login = () => {
+//     window.Kakao.Auth.login({
+//         scope: 'profile_nickname, account_email, gender, birthday', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+//         success: function(response) {
+//             console.log(response) // 로그인 성공하면 받아오는 데이터
+//             window.Kakao.API.request({ // 사용자 정보 가져오기 
+//                 url: '/v2/user/me',
+//                 success: (res) => {
+//                     const kakao_account = res.kakao_account;
+//                     console.log(kakao_account)
+//                 }
+//             });
+//             // window.location.href='/login' //리다이렉트 되는 코드
+//         },
+//         fail: function(error) {
+//             console.log(error);
+//         }
+//     });
+// }
 
   const getUserData = async () => {
     const result = await axios({
         method: "GET",
         url: "/signup"
       })
-      setUser(result.data.userData);  
+      setUser(result.data.memberData);  
 }
+  const KakaoSuccess = () => {
+      setIsLogIn(true);
+      navigate('/');
+  }
 
-  const OnClickSetUser = async () => {
-    const result = await axios({
+  const OnClickSetUser = async (e) => {
+    e.preventDefault();
+
+    for(let i=0; i<user.length; i++){
+      if(id === user[i].id) {
+        if(pw === user[i].pw){
+          setLogin(true);
+          console.log('성공');
+          setIsLogIn(true);
+          return;
+        } else{
+          setLogin(false);
+        }
+      } else{
+        setLogin(false);
+      }
+    }
+
+    if(login) {
+      const result = await axios({
         method: "POST",
         url: "/login",
         data: {
             "id": id,
             "pw": pw           
         }
-    })
-    if(result.status === 200) {
-        await getUserData();
+      })
+      if(result.status === 200) {
+          await getUserData();
+      }
+
+      alert('로그인 성공');
+      navigate('/');
+    } else{
+      alert('아이디 또는 비밀번호를 다시 입력해주세요');
     }
 }
 
@@ -94,7 +129,7 @@ export default function LogIn() {
             <ButtonBox>
               <KakaoLogin className="kakao"
                 token={token}
-                onSuccess={console.log}
+                onSuccess={KakaoSuccess}
                 onFail={console.error}
                 onLogout={console.info}
                 useLoginForm
@@ -105,7 +140,7 @@ export default function LogIn() {
                   "width": "100%",
                   "height": "54px",
                   "background-color": "#FEE500",
-                  "border-radius": "12px"}}>
+                  "border-radius": "6px"}}>
                   <img src={kakaoimg} 
                     style={{"width": "100%",
                       "padding-top": "3px"}}/>
@@ -113,7 +148,7 @@ export default function LogIn() {
               {/* <KakaoButton onClick={kakao_Login}>
                 <img src={kakaoimg} />
               </KakaoButton> */}
-              <Button primary>
+              <Button primary onClick={OnClickSetUser}>
                 <span>로그인</span>
               </Button>
               <Button>
@@ -205,23 +240,8 @@ const Button = styled.button`
   overflow: hidden;
   width: 100%;
   height: 54px;
-  border-radius: 12px;
+  border-radius: 6px;
   border: ${props => props.primary ? "0px none" : "1px solid rgb(95, 0, 128)"};
   color: ${props => props.primary ? "rgb(255, 255, 255)" : "rgb(95, 0, 128)"};
   background-color: ${props => props.primary ? "rgb(95, 0, 128)" : "rgb(255, 255, 255)"};
-`;
-
-const KakaoButton = styled.a`
-  display: block;
-  padding: 0px 10px 0px 0px;
-  margin-bottom: 7px;
-  overflow: hidden;
-  width: 100%;
-  height: 54px;
-  background-color:  #FEE500;
-  border-radius: 12px;
-  > img{
-    width: 100%;
-    padding-top: 3px;
-  }
 `;

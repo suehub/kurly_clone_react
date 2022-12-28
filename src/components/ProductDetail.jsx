@@ -15,6 +15,7 @@ export default function ProductDetail(props) {
 
     const addCartList = () => {
         setCart(cart => [product, ...cart]);   // state 객체 CartList 배열에 추가
+        alert('장바구니에 추가');
     };
 
     
