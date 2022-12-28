@@ -72,36 +72,41 @@ export default function LogIn() {
     for(let i=0; i<user.length; i++){
       if(id === user[i].id) {
         if(pw === user[i].pw){
-          setLogin(true);
+          alert('로그인 성공');
+          setIsLogIn(true);
+          navigate('/');
           console.log('성공');
           setIsLogIn(true);
           return;
         } else{
+          alert('아이디 또는 비밀번호를 다시 입력해주세요');
           setLogin(false);
         }
       } else{
+        alert('아이디 또는 비밀번호를 다시 입력해주세요');
         setLogin(false);
       }
     }
 
-    if(login) {
-      const result = await axios({
-        method: "POST",
-        url: "/login",
-        data: {
-            "id": id,
-            "pw": pw           
-        }
-      })
-      if(result.status === 200) {
-          await getUserData();
-      }
+    // if(login) {
+    //   // const result = await axios({
+    //   //   method: "POST",
+    //   //   url: "/login",
+    //   //   data: {
+    //   //       "id": id,
+    //   //       "pw": pw           
+    //   //   }
+    //   // })
+    //   // if(result.status === 200) {
+    //   //     await getUserData();
+    //   // }
 
-      alert('로그인 성공');
-      navigate('/');
-    } else{
-      alert('아이디 또는 비밀번호를 다시 입력해주세요');
-    }
+    //   alert('로그인 성공');
+    //   setIsLogIn(true);
+    //   navigate('/');
+    // } else{
+    //   alert('아이디 또는 비밀번호를 다시 입력해주세요');
+    // }
 }
 
   return (
