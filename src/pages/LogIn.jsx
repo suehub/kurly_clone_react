@@ -23,6 +23,7 @@ export default function LogIn() {
   };
 
   useEffect(() => {
+    // process.env.NODE_ENV;  // 프로젝트가 실행되는 환경 체크 가능
     initKakao();
     getUserData();
   }, []);
@@ -32,27 +33,27 @@ export default function LogIn() {
   const [pw, setPw] = useState("");
   const [login, setLogin] = useState(false);
 
-  const token = "a82090e04e746f2440d7dcbac68a2c01";
+  // const KAKAO_CLIENT_ID = "a82090e04e746f2440d7dcbac68a2c01";
 
-//   const kakao_Login = () => {
-//     window.Kakao.Auth.login({
-//         scope: 'profile_nickname, account_email, gender, birthday', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
-//         success: function(response) {
-//             console.log(response) // 로그인 성공하면 받아오는 데이터
-//             window.Kakao.API.request({ // 사용자 정보 가져오기 
-//                 url: '/v2/user/me',
-//                 success: (res) => {
-//                     const kakao_account = res.kakao_account;
-//                     console.log(kakao_account)
-//                 }
-//             });
-//             // window.location.href='/login' //리다이렉트 되는 코드
-//         },
-//         fail: function(error) {
-//             console.log(error);
-//         }
-//     });
-// }
+  const kakao_Login = () => {
+    window.Kakao.Auth.login({
+        scope: 'profile_nickname, account_email, gender, birthday', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값
+        success: function(response) {
+            console.log(response) // 로그인 성공하면 받아오는 데이터
+            window.Kakao.API.request({ // 사용자 정보 가져오기 
+                url: '/v2/user/me',
+                success: (res) => {
+                    const kakao_account = res.kakao_account;
+                    console.log(kakao_account)
+                }
+            });
+            // window.location.href='/login' //리다이렉트 되는 코드
+        },
+        fail: function(error) {
+            console.log(error);
+        }
+    });
+}
 
   const getUserData = async () => {
     const result = await axios({
@@ -87,27 +88,7 @@ export default function LogIn() {
         setLogin(false);
       }
     }
-
-    // if(login) {
-    //   // const result = await axios({
-    //   //   method: "POST",
-    //   //   url: "/login",
-    //   //   data: {
-    //   //       "id": id,
-    //   //       "pw": pw           
-    //   //   }
-    //   // })
-    //   // if(result.status === 200) {
-    //   //     await getUserData();
-    //   // }
-
-    //   alert('로그인 성공');
-    //   setIsLogIn(true);
-    //   navigate('/');
-    // } else{
-    //   alert('아이디 또는 비밀번호를 다시 입력해주세요');
-    // }
-}
+  }
 
   return (
     <Container>
@@ -133,7 +114,7 @@ export default function LogIn() {
             </Search>
             <ButtonBox>
               <KakaoLogin className="kakao"
-                token={token}
+                token={process.env.REACT_APP_KAKAO_CLIENT_ID}
                 onSuccess={KakaoSuccess}
                 onFail={console.error}
                 onLogout={console.info}
