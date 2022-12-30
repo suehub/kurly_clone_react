@@ -47,7 +47,10 @@ export default function Cart() {
                             </h4>
                             <ul>
                                 {product.map((p) => {
-                                   <CartCard init={p}/>
+                                    return(
+                                        <CartCard init={p}/>
+                                    )
+                                   
                                 })}
                             </ul>
                             <h4>
